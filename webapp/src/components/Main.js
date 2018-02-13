@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class Main extends Component {
   render() {
@@ -8,7 +8,8 @@ class Main extends Component {
         <h1>
           <Link to="/">Reduxstagram</Link>
         </h1>
-        {React.cloneElement({...this.props}.children, {...this.props})}
+          <p>Hello, Main</p>
+        {/*{React.cloneElement({...this.props}.children, {...this.props})}*/}
       </div>
     )
   }
