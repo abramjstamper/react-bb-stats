@@ -5,24 +5,24 @@ class NavBar extends Component {
     return (
       <div>
         <nav className="navbar is-primary">
-          <div class="navbar-brand">
+          <div className="navbar-brand">
             react-bb-stats
           </div>
-          <div class="navbar-menu">
-            <div class="navbar-end">
-              <a class="navbar-item">
+          <div className="navbar-menu">
+            <div className="navbar-end">
+              <a className="navbar-item">
                 Games
               </a>
-              <a class="navbar-item">
+              <a className="navbar-item">
                 Teams
               </a>
-              <a class="navbar-item">
+              <a className="navbar-item">
                 Seasons
               </a>
-              <a class="navbar-item">
+              <a className="navbar-item">
                 Admin
               </a>
-              <a class="navbar-item">
+              <a className="navbar-item">
                 Login/Logout
               </a>
             </div>

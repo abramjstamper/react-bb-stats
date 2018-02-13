@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
-import NavBar from './navbar'
-import Game from './game/game'
-import './App.css';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from './actions/actionCreators';
+import Main from './components/Main';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <NavBar />
-        <Game />
-      </div>
-    );
-  }
+function mapStateToProps(state) {
+  return { teams : state.teams };
 }
+
+function mapDispachToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+const App = connect(mapStateToProps, mapDispachToProps)(Main);
 
 export default App;
