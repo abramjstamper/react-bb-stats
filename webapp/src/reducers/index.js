@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
+// import { routerReducer } from 'react-router-redux';
 
-const rootReducer = combineReducers({routing: routerReducer });
+import teams from './teams';
+import routes from './routes';
+
+const rootReducer = combineReducers({ teams: teams, routes: routes });
 
 export default rootReducer;

@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+// import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 // import router components
-import Main from './components/Main';
+import Navbar from './components/navbar';
 import Game from './components/game/game';
-import Team from './components/team/team';
+import TeamList from './components/team/teamList';
 
 // import react router deps
 import {Provider} from 'react-redux';
@@ -17,13 +17,11 @@ import store from './store/store';
 
 const router = (
     <Provider store={store}>
-        <Router>
-            <div>
-                <Route exact path="/" component={App}></Route>
-                <Route path="/team/:teamId" component={Team}></Route>
-                <Route path="/game/:gameId" component={Game}></Route>
-            </div>
-        </Router>
+                <App />
+                {/* <Navbar /> */}
+                {/* <Route exact path="/" component={App}></Route> */}
+                {/* <Route path="/teams" render={() => <TeamList {...this.props} />}></Route>
+                <Route path="/games" component={Game}></Route> */}
     </Provider>
 );
 

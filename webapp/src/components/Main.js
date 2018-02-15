@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Navbar from './navbar';
 
 class Main extends Component {
   render() {
     return (
       <div>
-        <h1>
-          <Link to="/">Reduxstagram</Link>
-        </h1>
-          <p>Hello, Main</p>
-        {/*{React.cloneElement({...this.props}.children, {...this.props})}*/}
+        <Navbar />
+        {/* {cloneElement({...this.props}.children, {...this.props})} */}
       </div>
     )
   }
