@@ -1,25 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import universal from 'react-universal-component';
+import {componentMap} from '../reducers/routes';
 
-const UniversalComponent = universal(props => import(`./${props.page}/${props.page}`), {
-  minDelay: 1000,
-  loading: () => (
-    <a className="button is-centered is-primary is-loading">
-      Button
-    </a>
-  ),
-  error: () => <h1 className="is-centered">PAGE NOT FOUND - 404</h1>
-});
+const Switcher = (component) => {
+  const TheSwitcher = componentMap[component.name];
+  return TheSwitcher ? <TheSwitcher /> : null;
+};
 
-const Switcher = ({ page }) => (
-  <div>
-    <UniversalComponent page={page} />
-  </div>
-);
-
-const mapStateToProps = state => ({
-  page: state.page
-});
-
-export default connect(mapStateToProps)(Switcher);
+const mapStateToProps = state => state.routes;
+export default connect(mapStateToProps, {})(Switcher);

@@ -20,7 +20,7 @@ const { store } = configureStore(history, defaultState);
 const render = App => {
     const root = document.getElementById('root')
   
-    ReactDOM.hydrate(
+    ReactDOM.render(
         <Provider store={store}>
           <App />
         </Provider>,
@@ -35,6 +35,6 @@ const render = App => {
       const App = require('./components/App').default
   
       render(App)
-    })
+    });
   }
 registerServiceWorker();
