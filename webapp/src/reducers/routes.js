@@ -1,16 +1,11 @@
 import { NOT_FOUND } from 'redux-first-router'
 
-export const routes = (state = null, action = {}) => {
-  switch(action.type) {
-    case 'GAMES':
-    case 'TEAMS_LIST':
-    case NOT_FOUND:
-      return null
-    case 'TEAMS':
-      return action.payload.id
-    default: 
-      return state
-  }
-}
+export default (state = 'HOME', action = {}) => components[action.type] || state
 
-export default routes;
+const components = {
+  HOME: 'Home',
+  TEAMS_LIST: 'Team_List',
+  TEAMS: 'Teams',
+  GAMES: 'Games',
+  [NOT_FOUND]: 'NotFound'
+}

@@ -1,29 +1,40 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import createHistory from 'history/createBrowserHistory'
+import App from './components/App'
+import configureStore from './configureStore'
 import registerServiceWorker from './registerServiceWorker';
+// import { AppContainer } from 'react-hot-loader';
 
-// import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import teams from './tests/initState/teams';
 
-// import router components
-import Navbar from './components/navbar';
-import Game from './components/game/game';
-import TeamList from './components/team/teamList';
+// create an object for the default data
+const defaultState = {
+    teams: teams
+};
 
-// import react router deps
-import {Provider} from 'react-redux';
-import store from './store/store';
+const history = createHistory();
+const { store } = configureStore(history, defaultState);
 
-const router = (
-    <Provider store={store}>
-                <App />
-                {/* <Navbar /> */}
-                {/* <Route exact path="/" component={App}></Route> */}
-                {/* <Route path="/teams" render={() => <TeamList {...this.props} />}></Route>
-                <Route path="/games" component={Game}></Route> */}
-    </Provider>
-);
-
-ReactDOM.render(router, document.getElementById('root'));
+const render = App => {
+    const root = document.getElementById('root')
+  
+    ReactDOM.hydrate(
+        <Provider store={store}>
+          <App />
+        </Provider>,
+      root
+    )
+  }
+  
+  render(App)
+  
+  if (module.hot && process.env.NODE_ENV === 'development') {
+    module.hot.accept('./components/App', () => {
+      const App = require('./components/App').default
+  
+      render(App)
+    })
+  }
 registerServiceWorker();

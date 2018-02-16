@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Link from 'redux-first-router-link';
+import Link, { NavLink } from 'redux-first-router-link';
 
 class NavBar extends Component {
   render() {
@@ -11,11 +11,11 @@ class NavBar extends Component {
           </div>
           <div className="navbar-menu">
             <div className="navbar-end">
-              <Link className="navbar-item" to="/games">Games</Link>
-              <Link className="navbar-item" to="/teams">Teams</Link>
-              <Link className="navbar-item" to="/seasons">Seasons</Link>
-              <Link className="navbar-item" to="/admin">Admin</Link>
-              <Link className="navbar-item" to="/">LogIn/Out</Link>
+              <NavLink activeClassName='is-active' className="navbar-item" to="/games">Games</NavLink>
+              <NavLink  activeClassName='is-active' className="navbar-item" to="/teams">Teams</NavLink>
+              <NavLink activeClassName='is-active' className="navbar-item" to="/seasons">Seasons</NavLink>
+              <NavLink activeClassName='is-active' className="navbar-item" to="/admin">Admin</NavLink>
+              <NavLink exact activeClassName='is-active' className="navbar-item" to="/">LogIn/Out</NavLink>
             </div>
           </div>
         </nav>

@@ -1,9 +1,3 @@
-import { combineReducers } from 'redux';
-// import { routerReducer } from 'react-router-redux';
-
-import teams from './teams';
-import routes from './routes';
-
-const rootReducer = combineReducers({ teams: teams, routes: routes });
-
-export default rootReducer;
+export { default as routes } from './routes'
+export { default as teams } from './teams'
+export { default as clock } from './clock'

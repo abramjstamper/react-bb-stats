@@ -1,4 +1,4 @@
-function toggleClock(state = [], action) {
+function clock(state = [], action) {
   switch(action.type){
     case 'START_CLOCK':
       // return the new state with the new comment
@@ -20,16 +20,16 @@ function toggleClock(state = [], action) {
   return state;
 }
 
-function comments(state = [], action) {
-  if(typeof action.postId !== 'undefined') {
-    return {
-      // take the current state
-      ...state,
-      // overwrite this post with a new one
-      [action.postId]: postComments(state[action.postId], action)
-    }
-  }
-  return state;
-}
+// function comments(state = [], action) {
+//   if(typeof action.postId !== 'undefined') {
+//     return {
+//       // take the current state
+//       ...state,
+//       // overwrite this post with a new one
+//       [action.postId]: postComments(state[action.postId], action)
+//     }
+//   }
+//   return state;
+// }
 
-export default comments;
+export default clock;

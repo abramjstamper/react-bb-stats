@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Link, Route} from 'react-router-dom';
-import Team from './team';
+import Link from 'redux-first-router-link';
+import Teams from './teams';
 
 class TeamList extends Component {
 
@@ -26,7 +26,6 @@ class TeamList extends Component {
     console.log(this.props);
     return (
       <div>
-        <Route exact path="/teams/:id" component={Team}></Route>
         <div className="columns">
           <div className="column"></div>
           <div className="column">
