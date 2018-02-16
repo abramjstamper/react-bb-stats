@@ -11,13 +11,13 @@ type Action = {
 
 // Action Types
 export const HOME = 'COMPONENTS/GAMES';
-export const TEAM_LIST = 'COMPONENTS/TEAM_LIST'
+export const TEAMS_LIST = 'COMPONENTS/TEAMS_LIST';
 export const TEAMS = 'COMPONENTS/TEAMS';
 export const GAMES = 'COMPONENTS/GAMES';
 
 const actionMap = {
   [HOME]: {name: 'Home', component: Games},
-  [TEAM_LIST]: {name: 'Team List', component: TEAM_LIST},
+  [TEAMS_LIST]: {name: 'Team List', component: Team_List},
   [GAMES]: {name: 'Games', component: Games},
   [TEAMS]: {name: 'Teams', component: Teams}
 };
@@ -29,7 +29,7 @@ type State = {
   name: string
 };
 const initialState = {
-  name: actionMap[HOME].name
+  name: actionMap[TEAMS].name
 };
 
 export default (state: State = initialState, action: Action) => {

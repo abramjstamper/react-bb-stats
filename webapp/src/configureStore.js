@@ -21,7 +21,7 @@ if (module.hot && process.env.NODE_ENV === 'development') {
     const reducers = require('./reducers/index');
     const rootReducer = combineReducers({ ...reducers, location: reducer });
     store.replaceReducer(rootReducer);
-  })
+  });
 }
 
 return { store, thunk };
