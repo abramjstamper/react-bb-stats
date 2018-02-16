@@ -16,7 +16,7 @@ const Switcher = ({ page }) => (
   <div>
     <UniversalComponent page={page} />
   </div>
-)
+);
 
 const mapStateToProps = state => ({
   page: state.page
