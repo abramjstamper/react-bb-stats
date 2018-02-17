@@ -10,14 +10,14 @@ class Team extends Component {
 
   componentWillMount(){
     this.team = this.props.teams[this.props.location.payload.id];
-
+    console.log(this.team);
   }
 
   renderPlayers(key){
     const player = this.team.players[key];
     return (
       <tr key={key}>
-        <td>{player.active}</td>
+        <td>{player.isActive.toString()}</td>
         <td>{player.number}</td>
         <td>{player.fname}</td>
         <td>{player.lname}</td>
@@ -27,8 +27,6 @@ class Team extends Component {
   }
 
   render() {
-    console.log(this.props);
-    console.log(this.team);
     return (
       <div>
         <h2>{this.team.name}</h2>

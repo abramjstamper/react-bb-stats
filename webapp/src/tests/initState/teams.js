@@ -12,14 +12,14 @@ const teams = [
         fname: "Abram",
         lname: "Stamper",
         number: 1,
-        active: true
+        isActive: true
       },
       {
         id: 2,
         fname: "Patrick",
         lname: "Barrett",
         number: 2,
-        active: true
+        isActive: true
       }
     ]
   },
@@ -36,14 +36,14 @@ const teams = [
         fname: "Phil",
         lname: "Warman",
         number: 1,
-        active: true
+        isActive: true
       },
       {
         id: 4,
         fname: "Caleb",
         lname: "Barrett",
         number: 2,
-        active: true
+        isActive: true
       }
     ]
   }

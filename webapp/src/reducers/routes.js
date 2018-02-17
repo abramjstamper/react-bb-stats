@@ -29,7 +29,7 @@ type State = {
   name: string
 };
 const initialState = {
-  name: actionMap[TEAMS].name
+  name: actionMap[TEAMS_LIST].name
 };
 
 export default (state: State = initialState, action: Action) => {
