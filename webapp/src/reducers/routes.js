@@ -4,11 +4,6 @@ import Games from "../components/games/games";
 import Teams from "../components/teams/teams";
 import Team_List from "../components/teams/teamList";
 
-type Action = {
-  +type: string,
-  payload: any
-};
-
 // Action Types
 export const HOME = 'COMPONENTS/GAMES';
 export const TEAMS_LIST = 'COMPONENTS/TEAMS_LIST';
@@ -25,14 +20,11 @@ const actionMap = {
 export const componentMap = _.fromPairs(_.map(actionMap, value => [ value.name, value.component ]));
 
 // Reducer
-type State = {
-  name: string
-};
 const initialState = {
   name: actionMap[TEAMS_LIST].name
 };
 
-export default (state: State = initialState, action: Action) => {
+export default (state = initialState, action) => {
   const actionInfo = actionMap[action.type];
   if (actionInfo) {
       return {
