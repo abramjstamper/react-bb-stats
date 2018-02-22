@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.6.2",
+    "classnames": "^2.2.5",
     "history": "^4.7.2",
     "lodash": "^4.17.5",
     "react": "^16.2.0",
@@ -19,6 +20,7 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-first-router": "0.0.16-next",
     "redux-first-router-link": "^1.4.2",
+    "redux-form": "^7.2.3",
     "s": "^0.1.1"
   },
   "scripts": {

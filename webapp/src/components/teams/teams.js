@@ -3,22 +3,39 @@ import { connect } from 'react-redux';
 
 class Team extends Component {
 
-  constructor(){
+  constructor() {
     super();
     this.renderPlayers = this.renderPlayers.bind(this);
+    this.findObjectByKey = this.findObjectByKey.bind(this);
+    this.renderHomeAwayNumber = this.renderHomeAwayNumber.bind(this);
   }
 
-  componentWillMount(){
-    this.team = this.props.teams[this.props.location.payload.id];
-    console.log(this.team);
+  findObjectByKey(array, key, value) {
+    for (var i = 0; i < array.length; i++) {
+      if (array[i][key] === value) {
+        return array[i];
+      }
+    }
+    return null;
   }
 
-  renderPlayers(key){
+  componentWillMount() {
+    this.team = this.findObjectByKey(this.props.teams, "id", this.props.location.payload.id);
+  }
+
+  renderHomeAwayNumber(player) {
+    if (player.awayNumber != player.homeNumber) {
+      return player.homeNumber + '/' + player.awayNumber
+    }
+    return player.homeNumber;
+  }
+
+  renderPlayers(key) {
     const player = this.team.players[key];
     return (
       <tr key={key}>
-        <td>{player.isActive.toString()}</td>
-        <td>{player.number}</td>
+        <td><input type="checkbox" defaultChecked={player.isActive} /></td>
+        <td>{this.renderHomeAwayNumber(player)}</td>
         <td>{player.fname}</td>
         <td>{player.lname}</td>
         <td><a className="button is-link">View</a></td>
@@ -26,31 +43,43 @@ class Team extends Component {
     );
   }
 
-  render() {
-    return (
-      <div>
-        <h2>{this.team.name}</h2>
+  compare = (a,b) => {
+    if (a.homeNumber < b.homeNumber)
+      return -1;
+    if (a.homeNumber > b.homeNumber)
+      return 1;
+    return 0;
+  }
+  
 
-        <div className="columns">
-          <div className="column"></div>
-          <div className="column">
-            <table className="table">
-              <thead>
-                <tr>
-                  <td>isActive</td>
-                  <td>Number</td>
-                  <td>First Name</td>
-                  <td>Last Name</td>
-                  <td></td>
-                </tr>
-              </thead>
-              <tbody>
-              {Object.keys(this.team.players).map(this.renderPlayers)}
-              </tbody>
-            </table>
+  render() {
+    console.log(this.team.players);
+    return (
+      <div className="container">
+        <section className="hero">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">{this.team.teamName}</h1>
+            </div>
+            <h2 class="subtitle">
+              {this.team.city + ", " + this.team.state}
+            </h2>
           </div>
-          <div className="column"></div>
-        </div>
+          <table className="table">
+            <thead>
+              <tr>
+                <td>Active</td>
+                <td>Number</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(this.team.players.sort(this.compare)).map(this.renderPlayers)}
+            </tbody>
+          </table>
+        </section>
       </div>
     );
   }

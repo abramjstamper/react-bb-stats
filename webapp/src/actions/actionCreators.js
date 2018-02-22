@@ -16,6 +16,13 @@ export function loadTeamList() {
   }
 }
 
+export function createNewTeam(team) {
+  return {
+    team: team,
+    type: "CREATE_NEW_TEAM"
+  }
+}
+
 export function loadTeam() {
   return {
     type: "LOAD_TEAM"

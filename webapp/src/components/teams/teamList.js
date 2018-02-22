@@ -2,51 +2,55 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'redux-first-router-link';
 import Teams from './teams';
+import CreateTeamForm from './createTeamForm';
 
 class TeamList extends Component {
 
-  constructor(){
+  constructor() {
     super();
     this.renderTeam = this.renderTeam.bind(this);
   }
 
-  renderTeam(key){
+  renderTeam(key) {
     const team = this.props.teams[key];
     return (
       <tr key={key}>
-        <td>{team.name}</td>
+        <td>{team.teamName}</td>
         <td>{team.city}</td>
         <td>{team.state}</td>
-        <td>{team.coach}</td>
+        <td>{team.headCoach}</td>
+        <td>{team.assistiantCoach}</td>
         <td><Link className="button is-link" to={`/teams/${team.id}`}>View</Link></td>
       </tr>
     );
   }
 
   render() {
-    console.log(this.props);
     return (
-      <div>
-        <div className="columns">
-          <div className="column"></div>
-          <div className="column">
-            <table className="table">
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>City</td>
-                  <td>State</td>
-                  <td>Coach</td>
-                  <td>Edit</td>
-                </tr>
-              </thead>
-              <tbody>
-              {Object.keys(this.props.teams).map(this.renderTeam)}
-              </tbody>
-            </table>
+      <div className="container">
+        <section className="hero">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">Teams</h1>
+            </div>
           </div>
-          <div className="column"></div>
-        </div>
+          <table className="table">
+            <thead>
+              <tr>
+                <td>Name</td>
+                <td>City</td>
+                <td>State</td>
+                <td>Coach</td>
+                <td>Assistant</td>
+                <td>Edit</td>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(this.props.teams).map(this.renderTeam)}
+            </tbody>
+          </table>
+        </section>
+        <CreateTeamForm/>
       </div>
     );
   }

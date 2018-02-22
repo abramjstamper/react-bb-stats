@@ -5,6 +5,13 @@ function teams(state = [], action) {
   switch(action.type){
     case 'LOAD_TEAM_LIST':
       return state;
+    case 'CREATE_NEW_TEAM':
+      if(typeof action.team === 'undefined')
+        return state;
+      console.log(action);
+      const clone = state;
+      clone.push(action.team);
+      return clone;
     default:
       return state;
   }

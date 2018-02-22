@@ -1,6 +1,7 @@
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'
-import { connectRoutes } from 'redux-first-router'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
+import { connectRoutes } from 'redux-first-router';
+import { reducer as reduxFormReducer } from 'redux-form';
 
 import routesMap from './routesMap'
 import * as reducers from './reducers'
@@ -11,7 +12,7 @@ const { reducer, middleware, enhancer, thunk } = connectRoutes(
   routesMap
 );
 
-const rootReducer = combineReducers({ ...reducers, location: reducer });
+const rootReducer = combineReducers({ ...reducers, form: reduxFormReducer, location: reducer });
 const middlewares = applyMiddleware(middleware);
 const enhancers = composeEnhancers(enhancer, middlewares);
 const store = createStore(rootReducer, preloadedState, enhancers);
