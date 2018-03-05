@@ -25,8 +25,8 @@ export function createNewTeam(team) {
 
 export function updatePlayerActiveStatus(team, player){
   return {
-    team: team,
     player: player,
+    team: team,
     type: "UPDATE_PLAYER_ACTIVE_STATUS"
   }
 }

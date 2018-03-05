@@ -23,7 +23,6 @@ class Team extends Component {
 
   updatePlayerStatus(e, team, player){
     this.props.updatePlayerActiveStatus(team, player);
-    console.log(e);
   }
 
   renderPlayers(key) {
@@ -38,15 +37,6 @@ class Team extends Component {
       </tr>
     );
   }
-
-  compare = (a,b) => {
-    if (a.homeNumber < b.homeNumber)
-      return -1;
-    if (a.homeNumber > b.homeNumber)
-      return 1;
-    return 0;
-  }
-  
 
   render() {
     return (

@@ -1,5 +1,6 @@
 const teams = {
   1: {
+    id: 1,
     teamName: "Kokomo Wildkats",
     headCoach: "Bob Waddell",
     assistiantCoach: "Timmy Jimmy Bobby",
@@ -10,6 +11,7 @@ const teams = {
     abbreviation: "KHS",
     players: {
       1: {
+        id: 1,
         fname: "Abram",
         lname: "Stamper",
         homeNumber: 1,
@@ -21,6 +23,7 @@ const teams = {
         isActive: true
       },
       2: {
+        id: 2,
         fname: "Patrick",
         lname: "Barrett",
         homeNumber: 2,
@@ -32,6 +35,7 @@ const teams = {
         isActive: true
       },
       3: {
+        id: 3,
         fname: "Trajan",
         lname: "Deckard",
         homeNumber: 4,
@@ -43,6 +47,7 @@ const teams = {
         isActive: true
       },
       4: {
+        id: 4,
         fname: "Anthony",
         lname: "Barnard",
         homeNumber: 23,
@@ -54,6 +59,7 @@ const teams = {
         isActive: true
       },
       5: {
+        id: 5,
         fname: "Kyle",
         lname: "Wade",
         homeNumber: 40,
@@ -65,6 +71,7 @@ const teams = {
         isActive: true
       },
       6: {
+        id: 6,
         fname: "Nate",
         lname: "Hemmerich",
         homeNumber: 50,
@@ -76,6 +83,7 @@ const teams = {
         isActive: true
       },
       7: {
+        id: 7,
         fname: "Julian",
         lname: "Wallace",
         homeNumber: 5,
@@ -87,6 +95,7 @@ const teams = {
         isActive: true
       },
       8: {
+        id: 8,
         fname: "Jeremy",
         lname: "Baker",
         homeNumber: 0,
@@ -98,6 +107,7 @@ const teams = {
         isActive: true
       },
       9: {
+        id: 9,
         fname: "Steven",
         lname: "Edwards",
         homeNumber: 2,
@@ -109,6 +119,7 @@ const teams = {
         isActive: false
       },
       10: {
+        id: 10,
         fname: "Shemar",
         lname: "Robinson",
         homeNumber: 3,
@@ -122,6 +133,7 @@ const teams = {
     }
   },
   2: {
+    id: 2,
     teamName: "Fishers HS",
     headCoach: "Matt Moore",
     assistiantCoach: "Timmy Jimmy Bobby",
@@ -132,6 +144,7 @@ const teams = {
     abbreviation: "FHS",
     players: {
       11: {
+        id: 11,
         fname: "Phil",
         lname: "Warman",
         homeNumber: 0,
@@ -143,6 +156,7 @@ const teams = {
         isActive: true
       },
       12: {
+        id: 12,
         fname: "Caleb",
         lname: "Barrett",
         homeNumber: 1,
@@ -154,6 +168,7 @@ const teams = {
         isActive: true
       },
       13: {
+        id: 13,
         fname: "Willie",
         lname: "Jackson",
         homeNumber: 5,
@@ -165,6 +180,7 @@ const teams = {
         isActive: true
       },
       14: {
+        id: 14,
         fname: "Emmanuel",
         lname: "Davis",
         homeNumber: 10,
@@ -176,6 +192,7 @@ const teams = {
         isActive: true
       },
       15: {
+        id: 15,
         fname: "Jeremy",
         lname: "Szilagyi",
         homeNumber: 21,
@@ -187,6 +204,7 @@ const teams = {
         isActive: true
       },
       16: {
+        id: 16,
         fname: "Bryce",
         lname: "Gee",
         homeNumber: 25,
@@ -198,6 +216,7 @@ const teams = {
         isActive: true
       },
       17: {
+        id: 17,
         fname: "Craig",
         lname: "Yoho",
         homeNumber: 32,
@@ -209,6 +228,7 @@ const teams = {
         isActive: true
       },
       18: {
+        id: 18,
         fname: "Jack",
         lname: "Maller",
         homeNumber: 40,
@@ -220,6 +240,7 @@ const teams = {
         isActive: true
       },
       19: {
+        id: 19,
         fname: "Alex",
         lname: "Szilagyi",
         homeNumber: 12,
@@ -231,6 +252,7 @@ const teams = {
         isActive: false
       },
       20: {
+        id: 20,
         fname: "Brendhan",
         lname: "Russom",
         homeNumber: 34,
