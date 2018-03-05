@@ -8,10 +8,12 @@ import registerServiceWorker from './registerServiceWorker';
 // import { AppContainer } from 'react-hot-loader';
 
 import teams from './tests/initState/teams';
+import seasons from './tests/initState/seasons';
 
 // create an object for the default data
 const defaultState = {
-    teams: teams
+    teams: teams,
+    seasons: seasons
 };
 
 const history = createHistory();
