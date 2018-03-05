@@ -23,6 +23,14 @@ export function createNewTeam(team) {
   }
 }
 
+export function updatePlayerActiveStatus(team, player){
+  return {
+    team: team,
+    player: player,
+    type: "UPDATE_PLAYER_ACTIVE_STATUS"
+  }
+}
+
 export function loadTeam() {
   return {
     type: "LOAD_TEAM"

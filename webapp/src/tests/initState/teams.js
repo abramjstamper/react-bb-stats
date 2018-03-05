@@ -1,6 +1,5 @@
-const teams = [
-  {
-    id: 1,
+const teams = {
+  1: {
     teamName: "Kokomo Wildkats",
     headCoach: "Bob Waddell",
     assistiantCoach: "Timmy Jimmy Bobby",
@@ -9,9 +8,8 @@ const teams = [
     state: "Indiana",
     isMaleTeam: true,
     abbreviation: "KHS",
-    players: [
-      {
-        id: 1,
+    players: {
+      1: {
         fname: "Abram",
         lname: "Stamper",
         homeNumber: 1,
@@ -22,8 +20,7 @@ const teams = [
         class: "So",
         isActive: true
       },
-      {
-        id: 2,
+      2: {
         fname: "Patrick",
         lname: "Barrett",
         homeNumber: 2,
@@ -34,8 +31,7 @@ const teams = [
         class: "So",
         isActive: true
       },
-      {
-        id: 3,
+      3: {
         fname: "Trajan",
         lname: "Deckard",
         homeNumber: 4,
@@ -46,8 +42,7 @@ const teams = [
         class: "So",
         isActive: true
       },
-      {
-        id: 4,
+      4: {
         fname: "Anthony",
         lname: "Barnard",
         homeNumber: 23,
@@ -58,8 +53,7 @@ const teams = [
         class: "Sr",
         isActive: true
       },
-      {
-        id: 5,
+      5: {
         fname: "Kyle",
         lname: "Wade",
         homeNumber: 40,
@@ -70,8 +64,7 @@ const teams = [
         class: "Sr",
         isActive: true
       },
-      {
-        id: 6,
+      6: {
         fname: "Nate",
         lname: "Hemmerich",
         homeNumber: 50,
@@ -82,8 +75,7 @@ const teams = [
         class: "Sr",
         isActive: true
       },
-      {
-        id: 7,
+      7: {
         fname: "Julian",
         lname: "Wallace",
         homeNumber: 5,
@@ -94,8 +86,7 @@ const teams = [
         class: "Fr",
         isActive: true
       },
-      {
-        id: 8,
+      8: {
         fname: "Jeremy",
         lname: "Baker",
         homeNumber: 0,
@@ -106,8 +97,7 @@ const teams = [
         class: "Jr",
         isActive: true
       },
-      {
-        id: 9,
+      9: {
         fname: "Steven",
         lname: "Edwards",
         homeNumber: 2,
@@ -118,8 +108,7 @@ const teams = [
         class: "So",
         isActive: false
       },
-      {
-        id: 10,
+      10: {
         fname: "Shemar",
         lname: "Robinson",
         homeNumber: 3,
@@ -129,11 +118,10 @@ const teams = [
         weight: 200,
         class: "Fr",
         isActive: true
-      },
-    ]
+      }
+    }
   },
-  {
-    id: 2,
+  2: {
     teamName: "Fishers HS",
     headCoach: "Matt Moore",
     assistiantCoach: "Timmy Jimmy Bobby",
@@ -142,9 +130,8 @@ const teams = [
     state: "Indiana",
     isMaleTeam: true,
     abbreviation: "FHS",
-    players: [
-      {
-        id: 11,
+    players: {
+      11: {
         fname: "Phil",
         lname: "Warman",
         homeNumber: 0,
@@ -155,8 +142,7 @@ const teams = [
         class: "Fr",
         isActive: true
       },
-      {
-        id: 12,
+      12: {
         fname: "Caleb",
         lname: "Barrett",
         homeNumber: 1,
@@ -167,8 +153,7 @@ const teams = [
         class: "Fr",
         isActive: true
       },
-      {
-        id: 13,
+      13: {
         fname: "Willie",
         lname: "Jackson",
         homeNumber: 5,
@@ -179,8 +164,7 @@ const teams = [
         class: "Sr",
         isActive: true
       },
-      {
-        id: 14,
+      14: {
         fname: "Emmanuel",
         lname: "Davis",
         homeNumber: 10,
@@ -191,8 +175,7 @@ const teams = [
         class: "Sr",
         isActive: true
       },
-      {
-        id: 15,
+      15: {
         fname: "Jeremy",
         lname: "Szilagyi",
         homeNumber: 21,
@@ -203,8 +186,7 @@ const teams = [
         class: "FR",
         isActive: true
       },
-      {
-        id: 16,
+      16: {
         fname: "Bryce",
         lname: "Gee",
         homeNumber: 25,
@@ -215,8 +197,7 @@ const teams = [
         class: "Jr",
         isActive: true
       },
-      {
-        id: 17,
+      17: {
         fname: "Craig",
         lname: "Yoho",
         homeNumber: 32,
@@ -227,8 +208,7 @@ const teams = [
         class: "Sr",
         isActive: true
       },
-      {
-        id: 18,
+      18: {
         fname: "Jack",
         lname: "Maller",
         homeNumber: 40,
@@ -239,8 +219,7 @@ const teams = [
         class: "Sr",
         isActive: true
       },
-      {
-        id: 19,
+      19: {
         fname: "Alex",
         lname: "Szilagyi",
         homeNumber: 12,
@@ -251,8 +230,7 @@ const teams = [
         class: "So",
         isActive: false
       },
-      {
-        id: 20,
+      20: {
         fname: "Brendhan",
         lname: "Russom",
         homeNumber: 34,
@@ -263,8 +241,8 @@ const teams = [
         class: "Fr",
         isActive: true
       }
-    ]
+    }
   }
-]
+}
 
 export default teams;

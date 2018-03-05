@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { updatePlayerActiveStatus } from '../../actions/actionCreators';
 
 class Team extends Component {
 
   constructor() {
     super();
     this.renderPlayers = this.renderPlayers.bind(this);
-    this.findObjectByKey = this.findObjectByKey.bind(this);
     this.renderHomeAwayNumber = this.renderHomeAwayNumber.bind(this);
   }
 
-  findObjectByKey(array, key, value) {
-    for (var i = 0; i < array.length; i++) {
-      if (array[i][key] === value) {
-        return array[i];
-      }
-    }
-    return null;
-  }
-
   componentWillMount() {
-    this.team = this.findObjectByKey(this.props.teams, "id", this.props.location.payload.id);
+    this.team = this.props.teams[this.props.location.payload.id]
   }
 
   renderHomeAwayNumber(player) {
@@ -30,11 +21,16 @@ class Team extends Component {
     return player.homeNumber;
   }
 
+  updatePlayerStatus(e, team, player){
+    this.props.updatePlayerActiveStatus(team, player);
+    console.log(e);
+  }
+
   renderPlayers(key) {
     const player = this.team.players[key];
     return (
       <tr key={key}>
-        <td><input type="checkbox" defaultChecked={player.isActive} /></td>
+        <td><input type="checkbox" defaultChecked={player.isActive} onChange={(e) => this.updatePlayerStatus(e, this.team, player)} /></td>
         <td>{this.renderHomeAwayNumber(player)}</td>
         <td>{player.fname}</td>
         <td>{player.lname}</td>
@@ -53,17 +49,18 @@ class Team extends Component {
   
 
   render() {
-    console.log(this.team.players);
     return (
       <div className="container">
         <section className="hero">
           <div className="hero-body">
             <div className="container">
-              <h1 className="title">{this.team.teamName}</h1>
+              <h1 className="title">{this.team.teamName} ({this.team.abbreviation})</h1>
             </div>
-            <h2 class="subtitle">
+            <h2 className="subtitle">
               {this.team.city + ", " + this.team.state}
             </h2>
+            <p>Head Coach: {this.team.headCoach}</p>
+            <p>Assistant Coach: {this.team.assistiantCoach}</p>
           </div>
           <table className="table">
             <thead>
@@ -76,7 +73,7 @@ class Team extends Component {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(this.team.players.sort(this.compare)).map(this.renderPlayers)}
+              {Object.keys(this.team.players).map(this.renderPlayers)}
             </tbody>
           </table>
         </section>
@@ -86,4 +83,10 @@ class Team extends Component {
 }
 
 const mapStateToProps = state => state;
+Team = connect(
+  mapStateToProps,
+  {
+    updatePlayerActiveStatus
+  }
+)(Team);
 export default connect(mapStateToProps, {})(Team);

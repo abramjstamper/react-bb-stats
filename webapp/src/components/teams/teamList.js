@@ -20,7 +20,7 @@ class TeamList extends Component {
         <td>{team.state}</td>
         <td>{team.headCoach}</td>
         <td>{team.assistiantCoach}</td>
-        <td><Link className="button is-link" to={`/teams/${team.id}`}>View</Link></td>
+        <td><Link className="button is-link" to={`/teams/${key}`}>View</Link></td>
       </tr>
     );
   }
