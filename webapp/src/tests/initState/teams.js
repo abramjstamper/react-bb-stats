@@ -1,6 +1,7 @@
 const teams = {
   1: {
     id: 1,
+    seasonId: 1,
     teamName: "Kokomo Wildkats",
     headCoach: "Bob Waddell",
     assistiantCoach: "Timmy Jimmy Bobby",
@@ -111,7 +112,7 @@ const teams = {
         fname: "Steven",
         lname: "Edwards",
         homeNumber: 2,
-        awayNumber: 2,
+        awayNumber: 20,
         position: 'F',
         height: '6\' 11"',
         weight: 120,
@@ -134,6 +135,7 @@ const teams = {
   },
   2: {
     id: 2,
+    seasonId: 1,
     teamName: "Fishers HS",
     headCoach: "Matt Moore",
     assistiantCoach: "Timmy Jimmy Bobby",

@@ -23,6 +23,14 @@ export function createNewGame(game) {
   }
 }
 
+export function createNewPlayer(player, teamId) {
+  return {
+    player: player,
+    teamId: teamId,
+    type: "CREATE_NEW_PLAYER"
+  }
+}
+
 export function createNewSeason(season) {
   return {
     season: season,

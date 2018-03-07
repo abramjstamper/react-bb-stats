@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updatePlayerActiveStatus } from '../../actions/actionCreators';
+import CreatePlayerForm from './createPlayerForm';
 
 class Team extends Component {
 
@@ -8,6 +9,7 @@ class Team extends Component {
     super();
     this.renderPlayers = this.renderPlayers.bind(this);
     this.renderHomeAwayNumber = this.renderHomeAwayNumber.bind(this);
+    this.renderHeader = this.renderHeader.bind(this);
   }
 
   componentWillMount() {
@@ -21,8 +23,23 @@ class Team extends Component {
     return player.homeNumber;
   }
 
-  updatePlayerStatus(e, team, player){
+  updatePlayerStatus(e, team, player) {
     this.props.updatePlayerActiveStatus(team, player);
+  }
+
+  renderHeader() {
+    return (
+      <div className="hero-body">
+        <div className="container">
+          <h1 className="title">{this.props.seasons[this.team.seasonId].year} {this.team.teamName} ({this.team.abbreviation})</h1>
+        </div>
+        <h2 className="subtitle">
+          {this.team.city + ", " + this.team.state}
+        </h2>
+        <p>Head Coach: {this.team.headCoach}</p>
+        <p>Assistant Coach: {this.team.assistiantCoach}</p>
+      </div >
+    )
   }
 
   renderPlayers(key) {
@@ -42,16 +59,7 @@ class Team extends Component {
     return (
       <div className="container">
         <section className="hero">
-          <div className="hero-body">
-            <div className="container">
-              <h1 className="title">{this.team.teamName} ({this.team.abbreviation})</h1>
-            </div>
-            <h2 className="subtitle">
-              {this.team.city + ", " + this.team.state}
-            </h2>
-            <p>Head Coach: {this.team.headCoach}</p>
-            <p>Assistant Coach: {this.team.assistiantCoach}</p>
-          </div>
+          {this.renderHeader()}
           <table className="table">
             <thead>
               <tr>
@@ -67,6 +75,7 @@ class Team extends Component {
             </tbody>
           </table>
         </section>
+        <CreatePlayerForm />
       </div>
     );
   }
