@@ -7,18 +7,33 @@ class GamesList extends Component {
   constructor() {
     super();
     this.renderGame = this.renderGame.bind(this);
+    this.renderHeading = this.renderHeading.bind(this);
+  }
+
+  componentWillMount() {
+    this.season = this.props.seasons[this.props.location.payload.id];
+    this.team = this.props.teams[this.season.teamId];
+  }
+
+  renderHeading() {
+    return (
+      <div className="container">
+        <h1 className="title">Games</h1>
+        <h2>{`${this.season.year} ${this.team.teamName} Season`}</h2>
+      </div>
+    );
   }
 
   renderGame(key) {
-    const team = this.props.teams[key];
+    const game = this.props.games[key];
     return (
       <tr key={key}>
-        <td>{team.teamName}</td>
-        <td>{team.city}</td>
-        <td>{team.state}</td>
-        <td>{team.headCoach}</td>
-        <td>{team.assistiantCoach}</td>
-        <td><Link className="button is-link" to={`/teams/${key}`}>View</Link></td>
+        <td>{game.info.date}</td>
+        <td>{game.info.time}</td>
+        <td>{this.props.teams[game.info.homeTeam].teamName}</td>
+        <td>{this.props.teams[game.info.awayTeam].teamName}</td>
+        <td>{game.info.location}</td>
+        <td><Link className="button is-link" to={`/seasons/${game.info.season_id}/games/${key}`}>View</Link></td>
       </tr>
     );
   }
@@ -28,25 +43,23 @@ class GamesList extends Component {
       <div className="container">
         <section className="hero">
           <div className="hero-body">
-            <div className="container">
-              <h1 className="title">Games</h1>
-            </div>
+            {this.renderHeading()}
           </div>
-          {/* <table className="table">
+          <table className="table">
             <thead>
               <tr>
-                <td>Name</td>
-                <td>City</td>
-                <td>State</td>
-                <td>Coach</td>
-                <td>Assistant</td>
+                <td>Date</td>
+                <td>Time</td>
+                <td>Home Team</td>
+                <td>Away Team</td>
+                <td>Location</td>
                 <td>Edit</td>
               </tr>
             </thead>
             <tbody>
-              {Object.keys(this.props.teams).map(this.renderTeam)}
+              {Object.keys(this.props.games).map(this.renderGame)}
             </tbody>
-          </table> */}
+          </table>
         </section>
       </div>
     );

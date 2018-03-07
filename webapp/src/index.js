@@ -5,15 +5,17 @@ import createHistory from 'history/createBrowserHistory'
 import App from './components/App'
 import configureStore from './configureStore'
 import registerServiceWorker from './registerServiceWorker';
-// import { AppContainer } from 'react-hot-loader';
 
+//init data
 import teams from './tests/initState/teams';
 import seasons from './tests/initState/seasons';
+import games from './tests/initState/games';
 
 // create an object for the default data
 const defaultState = {
     teams: teams,
-    seasons: seasons
+    seasons: seasons,
+    games: games
 };
 
 const history = createHistory();
