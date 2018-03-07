@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'redux-first-router-link';
-import CreateTeamForm from './createTeamForm';
 
-class TeamList extends Component {
+class GameList extends Component {
 
   constructor() {
     super();
@@ -30,10 +29,10 @@ class TeamList extends Component {
         <section className="hero">
           <div className="hero-body">
             <div className="container">
-              <h1 className="title">Teams</h1>
+              <h1 className="title">Games</h1>
             </div>
           </div>
-          <table className="table">
+          {/* <table className="table">
             <thead>
               <tr>
                 <td>Name</td>
@@ -47,9 +46,8 @@ class TeamList extends Component {
             <tbody>
               {Object.keys(this.props.teams).map(this.renderTeam)}
             </tbody>
-          </table>
+          </table> */}
         </section>
-        <CreateTeamForm/>
       </div>
     );
   }
@@ -57,4 +55,4 @@ class TeamList extends Component {
 
 
 const mapStateToProps = state => state;
-export default connect(mapStateToProps, {})(TeamList);
+export default connect(mapStateToProps, {})(GameList);

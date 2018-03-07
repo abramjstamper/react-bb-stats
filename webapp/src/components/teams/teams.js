@@ -15,7 +15,7 @@ class Team extends Component {
   }
 
   renderHomeAwayNumber(player) {
-    if (player.awayNumber != player.homeNumber) {
+    if (player.awayNumber !== player.homeNumber) {
       return player.homeNumber + '/' + player.awayNumber
     }
     return player.homeNumber;

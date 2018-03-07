@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'redux-first-router-link';
+import CreateSeasonForm from './createSeasonForm';
 
 class Seasons extends Component {
 
@@ -43,6 +44,7 @@ class Seasons extends Component {
             </tbody>
           </table>
         </section>
+        <CreateSeasonForm/>
       </div>
     );
   }

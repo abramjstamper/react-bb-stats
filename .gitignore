@@ -60,3 +60,20 @@ typings/
 
 # JetBrains
 .idea/
+server/data/db/WiredTiger
+server/data/db/WiredTiger.lock
+server/data/db/WiredTiger.turtle
+server/data/db/WiredTiger.wt
+server/data/db/WiredTigerLAS.wt
+server/data/db/_mdb_catalog.wt
+server/data/db/collection-0-7885822062779963211.wt
+server/data/db/collection-2-7885822062779963211.wt
+server/data/db/index-1-7885822062779963211.wt
+server/data/db/index-3-7885822062779963211.wt
+server/data/db/mongod.lock
+server/data/db/sizeStorer.wt
+server/data/db/storage.bson
+server/data/db/diagnostic.data/metrics.2018-02-03T21-01-39Z-00000
+server/data/db/journal/WiredTigerLog.0000000001
+server/data/db/journal/WiredTigerPreplog.0000000001
+server/data/db/journal/WiredTigerPreplog.0000000002

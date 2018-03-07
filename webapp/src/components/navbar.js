@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Link, { NavLink } from 'redux-first-router-link';
-import {GAMES, TEAMS_LIST} from "../reducers/routes";
 
 class NavBar extends Component {
   render() {
@@ -13,9 +12,9 @@ class NavBar extends Component {
           <div className="navbar-menu">
             <div className="navbar-end">
               <NavLink activeClassName='is-active' className="navbar-item"
-                       to={{ type: GAMES }}>Games</NavLink>
+                       to="/games">Games</NavLink>
               <NavLink activeClassName='is-active' className="navbar-item"
-                       to={{ type: TEAMS_LIST }}>Teams</NavLink>
+                       to="/teams">Teams</NavLink>
               <NavLink activeClassName='is-active' className="navbar-item" to="/seasons">Seasons</NavLink>
               <NavLink activeClassName='is-active' className="navbar-item" to="/admin">Admin</NavLink>
               <NavLink exact activeClassName='is-active' className="navbar-item" to="/">LogIn/Out</NavLink>

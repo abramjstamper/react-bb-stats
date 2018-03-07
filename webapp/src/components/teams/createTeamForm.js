@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import TextField from '../form/textField';
 import Modal from '../uiElements/modal';
@@ -26,7 +26,7 @@ class CreateTeamForm extends Component {
     return (
       <form onSubmit={this.submit}>
         <Modal
-          title={""
+          title={"New Team"
             // this.props.form.createTeamForm && this.props.form.createTeamForm.values.teamName?"Create a New Team":this.props.form.createTeamForm.values.teamName
           }
           body={
