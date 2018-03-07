@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'redux-first-router-link';
 
-class GameList extends Component {
+class GamesList extends Component {
 
   constructor() {
     super();
-    this.renderTeam = this.renderTeam.bind(this);
+    this.renderGame = this.renderGame.bind(this);
   }
 
-  renderTeam(key) {
+  renderGame(key) {
     const team = this.props.teams[key];
     return (
       <tr key={key}>
@@ -55,4 +55,4 @@ class GameList extends Component {
 
 
 const mapStateToProps = state => state;
-export default connect(mapStateToProps, {})(GameList);
+export default connect(mapStateToProps, {})(GamesList);

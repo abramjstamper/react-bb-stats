@@ -4,7 +4,7 @@ import Court from './court';
 import Score from './score';
 import Timer from './timer';
 
-class Game extends Component {
+class Games extends Component {
   render() {
     return (
       <div>
@@ -34,4 +34,4 @@ class Game extends Component {
   }
 }
 
-export default Game;
+export default Games;

@@ -17,6 +17,7 @@ class Seasons extends Component {
         <td>{season.year}</td>
         <td><Link className="is-link" to={`/teams/${season.teamId}`}>{this.props.teams[season.teamId].teamName}</Link></td>
         <td>{season.description}</td>
+        <td><Link className="button is-link" to={`/seasons/${season.id}/games`}>View</Link></td>
 
       </tr>
     );
@@ -37,6 +38,7 @@ class Seasons extends Component {
                 <td>Year</td>
                 <td>Team</td>
                 <td>Description</td>
+                <td>Games</td>
               </tr>
             </thead>
             <tbody>
