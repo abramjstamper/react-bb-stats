@@ -16,6 +16,13 @@ export function loadTeamList() {
   }
 }
 
+export function createNewGame(game) {
+  return {
+    game: game,
+    type: "CREATE_NEW_GAME"
+  }
+}
+
 export function createNewSeason(season) {
   return {
     season: season,

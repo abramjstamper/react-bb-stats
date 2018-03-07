@@ -39,7 +39,7 @@ class CreateTeamForm extends Component {
               <TextField fieldName="state" label="State" />
             </div>
           }
-          buttonLabel={"Add Team"}
+          buttonLabel={"Create Team"}
         />
       </form>
     );

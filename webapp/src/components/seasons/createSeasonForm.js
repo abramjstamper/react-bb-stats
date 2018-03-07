@@ -19,7 +19,7 @@ class CreateSeasonForm extends Component {
     return (
       <form onSubmit={this.submit}>
         <Modal
-          title={"Create Season"}
+          title={"New Season"}
           body={
             <div>
               <TextField fieldName="year" label="Year" />
@@ -33,7 +33,7 @@ class CreateSeasonForm extends Component {
               </div>
             </div>
           }
-          buttonLabel={"New Season"}
+          buttonLabel={"Create Season"}
         />
       </form>
     );

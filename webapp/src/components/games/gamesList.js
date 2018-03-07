@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'redux-first-router-link';
+import CreateGameForm from './createGameForm';
 
 class GamesList extends Component {
 
@@ -61,6 +62,7 @@ class GamesList extends Component {
             </tbody>
           </table>
         </section>
+        <CreateGameForm/>
       </div>
     );
   }
