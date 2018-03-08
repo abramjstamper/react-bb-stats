@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
-import TextField from '../form/textField';
-// import SelectField from '../form/selectField';
+import FieldWrapper from '../form/fieldWrapper';
 import Modal from '../uiElements/modal';
 import { createNewSeason } from '../../actions/actionCreators';
-import { reset } from 'redux-form';
 
 class CreateSeasonForm extends Component {
 
@@ -22,8 +20,8 @@ class CreateSeasonForm extends Component {
           title={"New Season"}
           body={
             <div>
-              <TextField fieldName="year" label="Year" />
-              <TextField fieldName="description" label="Description" />
+              <FieldWrapper fieldName="year" label="Year" type="text" />
+              <FieldWrapper fieldName="description" label="Description" type="text"/>
               <div className="control">
                 <div className="select">
                   <Field name="teamId" className="input" component="select">

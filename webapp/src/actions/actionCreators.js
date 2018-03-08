@@ -16,6 +16,20 @@ export function loadTeamList() {
   }
 }
 
+export function createAccount(user) {
+  return {
+    user: user,
+    type: "CREATE_NEW_USER"
+  }
+}
+
+export function login(user) {
+  return {
+    user: user,
+    type: "LOGIN"
+  }
+}
+
 export function createNewGame(game) {
   return {
     game: game,
@@ -45,7 +59,7 @@ export function createNewTeam(team) {
   }
 }
 
-export function updatePlayerActiveStatus(team, player){
+export function updatePlayerActiveStatus(team, player) {
   return {
     player: player,
     team: team,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import TextField from '../form/textField';
+import FieldWrapper from '../form/fieldWrapper';
 import Modal from '../uiElements/modal';
 import { createNewTeam } from '../../actions/actionCreators';
 import {reset} from 'redux-form';
@@ -26,17 +26,15 @@ class CreateTeamForm extends Component {
     return (
       <form onSubmit={this.submit}>
         <Modal
-          title={"New Team"
-            // this.props.form.createTeamForm && this.props.form.createTeamForm.values.teamName?"Create a New Team":this.props.form.createTeamForm.values.teamName
-          }
+          title={"New Team"}
           body={
             <div>
-              <TextField fieldName="teamName" label="Team Name" />
-              <TextField fieldName="abbreviation" label="Abbreviation" />
-              <TextField fieldName="headCoach" label="Head Coach Name" />
-              <TextField fieldName="assistiantCoach" label="Assistiant Coach Name" />
-              <TextField fieldName="city" label="City" />
-              <TextField fieldName="state" label="State" />
+              <FieldWrapper fieldName="teamName" label="Team Name" />
+              <FieldWrapper fieldName="abbreviation" label="Abbreviation" />
+              <FieldWrapper fieldName="headCoach" label="Head Coach Name" />
+              <FieldWrapper fieldName="assistiantCoach" label="Assistiant Coach Name" />
+              <FieldWrapper fieldName="city" label="City" />
+              <FieldWrapper fieldName="state" label="State" />
             </div>
           }
           buttonLabel={"Create Team"}

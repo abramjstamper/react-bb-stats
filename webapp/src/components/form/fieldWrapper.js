@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
 
-let TextField = props => {
+let FieldWrapper = props => {
   return (
     <div className="field">
       <label className="label">{props.label}</label>
@@ -10,7 +10,7 @@ let TextField = props => {
           className="input"
           name={props.fieldName}
           component="input"
-          type="text"
+          type={props.type}
           placeholder={props.label}
         />
       </div>
@@ -18,4 +18,4 @@ let TextField = props => {
   );
 };
 
-export default TextField;
+export default FieldWrapper;

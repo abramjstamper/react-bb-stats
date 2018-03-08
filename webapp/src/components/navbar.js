@@ -12,7 +12,7 @@ class NavBar extends Component {
           <div className="navbar-menu">
             <div className="navbar-end">
               <NavLink activeClassName='is-active' className="navbar-item"
-                       to="/games">Games</NavLink>
+                       to="/tournaments">Tournament</NavLink>
               <NavLink activeClassName='is-active' className="navbar-item"
                        to="/teams">Teams</NavLink>
               <NavLink activeClassName='is-active' className="navbar-item" to="/seasons">Seasons</NavLink>

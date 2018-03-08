@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
-import TextField from '../form/textField';
+import FieldWrapper from '../form/fieldWrapper';
 import Modal from '../uiElements/modal';
 import { createNewGame } from '../../actions/actionCreators';
-import { reset } from 'redux-form';
 import { push } from 'redux-first-router'
 
 class CreateGameForm extends Component {
@@ -30,9 +29,9 @@ class CreateGameForm extends Component {
           title={"New Game"}
           body={
             <div>
-              <TextField fieldName="date" label="Date" />
-              <TextField fieldName="time" label="Time" />
-              <TextField fieldName="location" label="Location" />
+              <FieldWrapper fieldName="date" label="Date" />
+              <FieldWrapper fieldName="time" label="Time" />
+              <FieldWrapper fieldName="location" label="Location" />
               <div className="control">
                 <label className="label">Home Team</label>
                 <div className="select">
