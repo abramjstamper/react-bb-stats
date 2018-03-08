@@ -11,6 +11,11 @@ function teams(state = [], action) {
         return clone;
       clone.push(action.team);
       return clone;
+    case 'EDIT_TEAM':
+      clone[action.team.id] = action.team;
+      console.log(clone[action.team.id]);
+      console.log(clone);
+      return clone;
     case 'CREATE_NEW_PLAYER':
       if (typeof action.player === 'undefined')
         return clone;

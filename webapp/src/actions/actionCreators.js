@@ -59,6 +59,13 @@ export function createNewTeam(team) {
   }
 }
 
+export function editTeam(team) {
+  return {
+    team: team,
+    type: "EDIT_TEAM"
+  }
+}
+
 export function updatePlayerActiveStatus(team, player) {
   return {
     player: player,

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updatePlayerActiveStatus } from '../../actions/actionCreators';
 import CreatePlayerForm from './createPlayerForm';
+import EditTeamForm from './editTeamForm';
 
 class Team extends Component {
 
@@ -13,7 +14,11 @@ class Team extends Component {
   }
 
   componentWillMount() {
-    this.team = this.props.teams[this.props.location.payload.id]
+    this.team = this.props.teams[this.props.location.payload.id];
+  }
+
+  componentWillUpdate(){
+    this.team = this.props.teams[this.props.location.payload.id];
   }
 
   renderHomeAwayNumber(player) {
@@ -38,6 +43,7 @@ class Team extends Component {
         </h2>
         <p>Head Coach: {this.team.headCoach}</p>
         <p>Assistant Coach: {this.team.assistiantCoach}</p>
+        <EditTeamForm/>
       </div >
     )
   }
