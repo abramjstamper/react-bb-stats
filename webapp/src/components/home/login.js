@@ -13,10 +13,10 @@ class Login extends Component {
   }
 
   submit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     this.props.login(this.props.form.loginForm.values);
     this.props.reset("loginForm");
-    if (typeof submitData !== 'undefined') {
+    if (typeof this.props.form.loginForm.values !== 'undefined') {
       push(`/dashboard`);
     }
   }

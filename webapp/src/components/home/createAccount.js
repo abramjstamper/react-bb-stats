@@ -13,10 +13,10 @@ class CreateAccount extends Component {
   }
 
   submit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     this.props.createAccount(this.props.form.createAccount.values);
     this.props.reset("createAccount");
-    if (typeof submitData !== 'undefined') {
+    if (typeof this.props.form.createAccount.values !== 'undefined') {
       push(`/dashboard`);
     }
   }

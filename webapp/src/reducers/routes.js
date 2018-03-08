@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 //Components
 import Home from "../components/home/home";
+import Dashboard from "../components/user/dashboard";
 import Games_List from "../components/games/gamesList";
 import Games from "../components/games/games";
 import Team_List from "../components/teams/teamList";
@@ -11,6 +12,7 @@ import Seasons_List from "../components/seasons/seasonsList";
 
 // Action Types
 export const HOME = 'COMPONENTS/HOME';
+export const DASHBOARD = 'COMPONENTS/DASHBOARD';
 export const GAMES_LIST = 'COMPONENTS/GAMES_LIST';
 export const GAMES = 'COMPONENTS/GAMES';
 export const TEAMS_LIST = 'COMPONENTS/TEAMS_LIST';
@@ -19,6 +21,7 @@ export const SEASONS_LIST = 'COMPONENTS/SEASONS';
 
 const actionMap = {
   [HOME]: {name: 'Home', component: Home},
+  [DASHBOARD]: {name: 'Dashboard', component: Dashboard},
   [GAMES_LIST]: {name: 'Games List', component: Games_List},
   [GAMES]: {name: 'Games', component: Games},
   [TEAMS_LIST]: {name: 'Teams List', component: Team_List},

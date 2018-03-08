@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
 
-let FieldWrapper = props => {
+const FieldWrapper = props => {
   return (
     <div className="field">
       <label className="label">{props.label}</label>
