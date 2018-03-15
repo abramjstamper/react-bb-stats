@@ -55,10 +55,10 @@ class Timer extends Component {
   timerTick() {
     setTimeout(() => {
       if (!this.state.runTimer) { return; }
-      this.setState({
-        secondsRemaining: this.state.secondsRemaining--,
-        displayTime: this.getSecondsAsDigitalClock(this.state.secondsRemaining)
-      });
+      this.setState((prevState, props) => ({
+        secondsRemaining: this.prevState.secondsRemaining--,
+        displayTime: this.getSecondsAsDigitalClock(this.prevState.secondsRemaining)
+      }));
       console.log("Timer Ticking")
       console.log(this.state.displayTime);
       if (this.state.secondsRemaining > 0) {
