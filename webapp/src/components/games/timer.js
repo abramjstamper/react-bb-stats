@@ -1,28 +1,71 @@
 import React, { Component } from 'react';
 
 class Timer extends Component {
-  constructor(){
+  constructor() {
     super();
-    this.state = {
-      isPaused: true,
-      time: 64000,
-      period: 1
-    };
 
+    // this.timer = {};
+    // this.timer = this.createTimer(480);
+    this.state = this.createTimer(480);
+
+    this.createTimer = this.createTimer.bind(this);
     this.getSecondsAsDigitalClock = this.getSecondsAsDigitalClock.bind(this);
     this.timerTick = this.timerTick.bind(this);
   }
 
+  createTimer = (timeInSeconds) => {
+    if (!timeInSeconds) { timeInSeconds = 0; }
+
+    return {
+      displayTime: "not set",
+      seconds: timeInSeconds,
+      runTimer: false,
+      hasStarted: false,
+      hasFinished: false,
+      secondsRemaining: timeInSeconds
+    };
+  }
+
+  startTimer = () => {
+    console.log("Timer started");
+    this.setState({
+      hasStarted: true,
+      runTimer: true
+    });
+    this.timerTick();
+  }
+
+  pauseTimer = () => {
+    this.setState({runTimer: false});
+  }
+
+  resumeTimer = () => {
+    this.startTimer();
+  }
+
+  hasFinished = () => {
+    return this.state.hasFinished;
+  }
+
+  getDisplayTime = () => {
+    console.log("Get Display Time Called");
+    return this.getSecondsAsDigitalClock(this.state.secondsRemaining);
+  }
+
   timerTick() {
     setTimeout(() => {
-      if (!this.timer.runTimer) { return; }
-      this.timer.secondsRemaining--;
-      this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
-      if (this.timer.secondsRemaining > 0) {
+      if (!this.state.runTimer) { return; }
+      this.setState({
+        secondsRemaining: this.state.secondsRemaining--,
+        displayTime: this.getSecondsAsDigitalClock(this.state.secondsRemaining)
+      });
+      console.log("Timer Ticking")
+      console.log(this.state.displayTime);
+      if (this.state.secondsRemaining > 0) {
         this.timerTick();
       }
       else {
-        this.timer.hasFinished = true;
+        this.setState({hasFinished: true});
       }
     }, 1000);
   }
@@ -41,12 +84,35 @@ class Timer extends Component {
     return minutesString + ':' + secondsString;
   }
 
+  renderTimerSwitch = () => {
+    if(this.state.hasStarted && !this.state.runTimer){
+      return this.renderStartTimer();
+    } else {
+      return this.renderStartGame();
+    }
+  }
+
+  renderStartGame = () => {
+    return (
+      <button className="button" onClick={() => this.startTimer()}>Start Game</button>
+    );
+  }
+
+  renderStartTimer = () => {
+    return (
+      <div>
+        <span>{this.state.displayTime}</span>
+        <button className="button" onClick={() => this.startTimer()}>Start Timer</button>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="card">
         <div className="card-content">
           <div className="content has-text-centered">
-            <button className="button">Start Game</button>
+            {this.renderTimerSwitch()}
           </div>
         </div>
       </div>
