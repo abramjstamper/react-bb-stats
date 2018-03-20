@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, reset } from 'redux-form';
+import { reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
 import FieldWrapper from '../form/fieldWrapper';
 import { login } from '../../actions/actionCreators';

@@ -7,10 +7,12 @@ function games(state = [], action) {
     case "CREATE_NEW_GAME":
       if (typeof action.game === 'undefined')
         return clone;
-      console.log(state);
-      console.log(action);
       clone[3] = {}
       clone[3].info = action.game;
+      return clone;
+    case "UPDATE_CLOCK":
+      console.log(action);
+      clone[action.game.info.id].clock = action.clock;
       return clone;
     default:
       return clone;

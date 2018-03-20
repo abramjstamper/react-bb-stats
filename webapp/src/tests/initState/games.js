@@ -9,6 +9,9 @@ const games = {
       time: '6:00 PM',
       location: 'Memorial Gym'
     },
+    clock: {
+      
+    },
     plays: {
 
     }
@@ -22,6 +25,9 @@ const games = {
       date: '05/05/15',
       time: '6:00 PM',
       location: 'Fishers High School'
+    },
+    clock: {
+
     },
     plays: {
 

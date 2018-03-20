@@ -1,4 +1,3 @@
-export { default as clock } from './clock';
 export { default as games } from './games';
 export { default as routes } from './routes';
 export { default as seasons } from './seasons';

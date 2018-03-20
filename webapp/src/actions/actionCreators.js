@@ -1,12 +1,8 @@
-export function startClock() {
+export function updateClock(game, clock) {
   return {
-    type: 'START_CLOCK'
-  }
-}
-
-export function stopClock() {
-  return {
-    type: 'STOP_CLOCK'
+    type: 'UPDATE_CLOCK',
+    game: game,
+    clock: clock,
   }
 }
 

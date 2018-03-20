@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateClock } from '../../actions/actionCreators';
 
 class Timer extends Component {
   constructor() {
     super();
 
-    // this.timer = {};
-    // this.timer = this.createTimer(480);
-    this.state = this.createTimer(480);
+    this.timer = {};
+    this.timer = this.createTimer(480);
 
     this.createTimer = this.createTimer.bind(this);
     this.getSecondsAsDigitalClock = this.getSecondsAsDigitalClock.bind(this);
     this.timerTick = this.timerTick.bind(this);
+  }
+
+  componentWillMount() {
+    this.gameId = this.props.location.payload.id;
+    this.game = this.props.games[this.props.location.payload.id];
   }
 
   createTimer = (timeInSeconds) => {
@@ -28,15 +34,13 @@ class Timer extends Component {
 
   startTimer = () => {
     console.log("Timer started");
-    this.setState({
-      hasStarted: true,
-      runTimer: true
-    });
+    this.timer.hasStarted = true;
+    this.timer.runTimer = true;
     this.timerTick();
   }
 
   pauseTimer = () => {
-    this.setState({runTimer: false});
+    this.timer.runTimer = false;
   }
 
   resumeTimer = () => {
@@ -44,28 +48,27 @@ class Timer extends Component {
   }
 
   hasFinished = () => {
-    return this.state.hasFinished;
+    return this.timer.hasFinished;
   }
 
   getDisplayTime = () => {
     console.log("Get Display Time Called");
-    return this.getSecondsAsDigitalClock(this.state.secondsRemaining);
+    return this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
   }
 
   timerTick() {
     setTimeout(() => {
-      if (!this.state.runTimer) { return; }
-      this.setState((prevState, props) => ({
-        secondsRemaining: this.prevState.secondsRemaining--,
-        displayTime: this.getSecondsAsDigitalClock(this.prevState.secondsRemaining)
-      }));
+      if (!this.timer.runTimer) { return; }
+      this.timer.secondsRemaining--;
+      this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
+      this.props.updateClock(this.game, { displayTime: this.timer.displayTime, runTimer: true });
       console.log("Timer Ticking")
-      console.log(this.state.displayTime);
-      if (this.state.secondsRemaining > 0) {
+      console.log(this.timer.displayTime);
+      if (this.timer.secondsRemaining > 0) {
         this.timerTick();
       }
       else {
-        this.setState({hasFinished: true});
+        this.timer.hasFinished = true;
       }
     }, 1000);
   }
@@ -81,11 +84,15 @@ class Timer extends Component {
     hoursString = (hours < 10) ? "0" + hours : hours.toString();
     minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
     secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
-    return minutesString + ':' + secondsString;
+    if (hours === 0)
+      return minutesString + ':' + secondsString;
+    else
+      return hoursString + ':' + minutesString + ':' + secondsString;
   }
 
   renderTimerSwitch = () => {
-    if(this.state.hasStarted && !this.state.runTimer){
+    console.log(!this.props.games[this.gameId].clock.runTimer);
+    if (!this.props.games[this.gameId].clock.runTimer) {
       return this.renderStartTimer();
     } else {
       return this.renderStartGame();
@@ -94,14 +101,17 @@ class Timer extends Component {
 
   renderStartGame = () => {
     return (
-      <button className="button" onClick={() => this.startTimer()}>Start Game</button>
+      <div>
+        <span>{this.props.games[this.props.location.payload.id].clock.displayTime}</span>
+        <button className="button" onClick={() => this.startTimer()}>Start Game</button>
+      </div>
     );
   }
 
   renderStartTimer = () => {
     return (
       <div>
-        <span>{this.state.displayTime}</span>
+        <span>{this.props.games[this.props.location.payload.id].clock.displayTime}</span>
         <button className="button" onClick={() => this.startTimer()}>Start Timer</button>
       </div>
     );
@@ -120,4 +130,5 @@ class Timer extends Component {
   }
 }
 
-export default Timer;
+const mapStateToProps = state => state;
+export default connect(mapStateToProps, { updateClock })(Timer);

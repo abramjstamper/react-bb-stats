@@ -1,5 +1,5 @@
 import React from 'react';
-import Link, { NavLink } from 'redux-first-router-link';
+import { NavLink } from 'redux-first-router-link';
 
 const SideMenu = props => {
   return (
