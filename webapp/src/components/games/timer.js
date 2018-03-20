@@ -64,6 +64,8 @@ class Timer extends Component {
   adjustTimer = (amount) => {
     if (this.timer.secondsRemaining + amount > 0) {
       this.timer.secondsRemaining += amount;
+      this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
+      this.props.updateClock(this.game, { displayTime: this.timer.displayTime, runTimer: this.timer.runTimer });
       this.forceUpdate();
     }
   }
