@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateClock } from '../../actions/actionCreators';
+import ChevronUpIcon from 'mdi-react/ChevronUpIcon';
+import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 
 class Timer extends Component {
   constructor() {
@@ -8,10 +10,6 @@ class Timer extends Component {
 
     this.timer = {};
     this.timer = this.createTimer(15);
-
-    this.createTimer = this.createTimer.bind(this);
-    this.getSecondsAsDigitalClock = this.getSecondsAsDigitalClock.bind(this);
-    this.timerTick = this.timerTick.bind(this);
   }
 
   componentWillMount() {
@@ -23,7 +21,7 @@ class Timer extends Component {
     if (!timeInSeconds) { timeInSeconds = 0; }
 
     return {
-      displayTime: "not set",
+      displayTime: this.getSecondsAsDigitalClock(timeInSeconds),
       seconds: timeInSeconds,
       runTimer: false,
       hasStarted: false,
@@ -41,24 +39,13 @@ class Timer extends Component {
 
   pauseTimer = () => {
     this.timer.runTimer = false;
+    this.props.updateClock(this.game, { displayTime: this.timer.displayTime, runTimer: false });
+    this.forceUpdate();
   }
 
-  resumeTimer = () => {
-    this.startTimer();
-  }
-
-  hasFinished = () => {
-    return this.timer.hasFinished;
-  }
-
-  getDisplayTime = () => {
-    console.log("Get Display Time Called");
-    return this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
-  }
-
-  timerTick() {
+  timerTick = () => {
     setTimeout(() => {
-      if (!this.timer.runTimer) { return; }
+      if (!this.timer.runTimer || this.timer.secondsRemaining < 0) { return; }
       this.timer.secondsRemaining--;
       this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
       this.props.updateClock(this.game, { displayTime: this.timer.displayTime, runTimer: true });
@@ -74,7 +61,14 @@ class Timer extends Component {
     }, 1000);
   }
 
-  getSecondsAsDigitalClock(inputSeconds) {
+  adjustTimer = (amount) => {
+    if (this.timer.secondsRemaining + amount > 0) {
+      this.timer.secondsRemaining += amount;
+      this.forceUpdate();
+    }
+  }
+
+  getSecondsAsDigitalClock = (inputSeconds) => {
     var sec_num = parseInt(inputSeconds.toString(), 10);
     var hours = Math.floor(sec_num / 3600);
     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
@@ -91,19 +85,53 @@ class Timer extends Component {
       return hoursString + ':' + minutesString + ':' + secondsString;
   }
 
+  renderTimerSwitch = () => {
+    if (this.timer.runTimer) {
+      return (<button className="button" onClick={() => this.pauseTimer()}>Stop Clock</button>);
+    } else {
+      return (<button className="button" onClick={() => this.startTimer()}>Start Clock</button>);
+    }
+  }
+
+  renderSecondsButtons = () => {
+    return (
+      <div>
+        <button className="button" onClick={() => this.adjustTimer(1)} ><ChevronUpIcon /></button>
+        <button className="button" onClick={() => this.adjustTimer(-1)} ><ChevronDownIcon /></button>
+      </div>
+    );
+  }
+
+  renderMinutesButtons = () => {
+    return (
+      <div>
+        <button className="button" onClick={() => this.adjustTimer(60)} ><ChevronUpIcon /></button>
+        <button className="button" onClick={() => this.adjustTimer(-60)} ><ChevronDownIcon /></button>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="card">
         <div className="card-content">
-          <div className="content has-text-centered">
-            <button className="button" onClick={() => this.startTimer()}>Start Timer</button>
-            <span>{this.props.games[this.gameId].clock.displayTime}</span>
+          <div className="content has-text-centered columns">
+            <div className="column">
+              {this.renderMinutesButtons()}
+            </div>
+            <div className="column">
+              {this.renderTimerSwitch()}
+            </div>
+            <div className="column">
+              {this.renderSecondsButtons()}
+            </div>
           </div>
+          <div className="content has-text-centered is-size-5">{this.props.games[this.props.location.payload.id].clock.displayTime}</div>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {return {games: state.games, location: state.location}};
+const mapStateToProps = state => { return { games: state.games, location: state.location } };
 export default connect(mapStateToProps, { updateClock })(Timer);
