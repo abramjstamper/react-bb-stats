@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import court from './court.png'
+import HsCourt from './hsCourt.js';
+// import court from './court.png'
 
 class Court extends Component {
+
   render() {
     return (
-      <div>
-        <img src={court} alt="Logo" />
-      </div>
+      <HsCourt />
     );
   }
 }
