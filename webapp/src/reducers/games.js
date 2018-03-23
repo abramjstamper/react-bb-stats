@@ -11,7 +11,7 @@ function games(state = [], action) {
       clone[3].info = action.game;
       return clone;
     case "UPDATE_CLOCK":
-      console.log(action);
+      // console.log(action);
       clone[action.game.info.id].clock = action.clock;
       return clone;
     default:
