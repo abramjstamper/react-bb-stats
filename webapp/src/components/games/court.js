@@ -6,7 +6,7 @@ class Court extends Component {
 
   render() {
     return (
-      <HsCourt />
+      <HsCourt {...this.props}/>
     );
   }
 }

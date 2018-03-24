@@ -6,7 +6,7 @@ import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 
 //FIXME: Should come from the rule set
 const TIME_LEFT_IN_SECONDS = 15;
-const MAX_PERIOD = 5;
+const MAX_PERIOD = 4;
 
 class Timer extends Component {
 
@@ -19,9 +19,7 @@ class Timer extends Component {
   }
 
   componentWillMount() {
-    this.gameId = this.props.location.payload.id;
-    this.game = this.props.games[this.props.location.payload.id];
-    this.props.updateClock(this.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
+    this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
   }
 
   createTimer = (timeInSeconds) => {
@@ -45,7 +43,7 @@ class Timer extends Component {
 
   pauseTimer = () => {
     this.timer.runTimer = false;
-    this.props.updateClock(this.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: false });
+    this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: false });
     this.forceUpdate();
   }
 
@@ -54,7 +52,7 @@ class Timer extends Component {
       if (!this.timer.runTimer || this.timer.secondsRemaining < 0) { return; }
       this.timer.secondsRemaining--;
       this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
-      this.props.updateClock(this.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: true });
+      this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: true });
       this.forceUpdate();
       if (this.timer.secondsRemaining > 0) {
         this.timerTick();
@@ -62,7 +60,7 @@ class Timer extends Component {
       else {
         this.timer.runTimer = false;
         this.timer.hasFinished = true;
-        this.props.updateClock(this.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
+        this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
         this.forceUpdate();
       }
     }, 1000);
@@ -72,7 +70,7 @@ class Timer extends Component {
     if (this.timer.secondsRemaining + amount > 0 && this.timer.seconds >= this.timer.secondsRemaining + amount) {
       this.timer.secondsRemaining += amount;
       this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
-      this.props.updateClock(this.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
+      this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
       this.forceUpdate();
     }
   }
@@ -81,7 +79,7 @@ class Timer extends Component {
     if (this.period < MAX_PERIOD){
       this.period = this.period + 1;
       this.timer = this.createTimer(TIME_LEFT_IN_SECONDS);
-      this.props.updateClock(this.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
+      this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
       this.forceUpdate();
     }
   }
@@ -152,12 +150,12 @@ class Timer extends Component {
               {this.renderSecondsButtons()}
             </div>
           </div>
-          <div className="content has-text-centered is-size-5">{this.props.games[this.props.location.payload.id].clock.period} - {this.props.games[this.props.location.payload.id].clock.displayTime}</div>
+          <div className="content has-text-centered is-size-5">{this.props.game.clock.period} - {this.props.game.clock.displayTime}</div>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => { return { games: state.games, location: state.location } };
+const mapStateToProps = state => state;
 export default connect(mapStateToProps, { updateClock })(Timer);

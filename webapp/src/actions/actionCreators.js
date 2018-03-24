@@ -75,3 +75,20 @@ export function loadTeam() {
     type: "LOAD_TEAM"
   }
 }
+
+export function createNewGameEvent(game, event) {
+  return {
+    type: "CREATE_NEW_GAME_EVENT",
+    game: game,
+    event: event
+  }
+}
+
+export function fireNewShotEvent(game, coord, location) {
+  return {
+    type: "NEW_SHOT_EVENT",
+    game: game,
+    coord: coord,
+    location: location
+  }
+}

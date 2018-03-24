@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {fireNewShotEvent} from '../../actions/actionCreators';
 
 class HsCourt extends Component {
 
@@ -56,15 +58,15 @@ class HsCourt extends Component {
       this.markMadeBasket(coord.x, coord.y);
     }
 
+    console.log(this.props);
+    this.props.fireNewShotEvent(this.props.game, coord, floorLocation);
     console.log(`(${coord.x}, ${coord.y})`);
-
-
   }
 
   render() {
 
     return (
-      <svg id="mySVG" ref={(ref) => this.svg = ref} width={804} height={454} viewBox="0 0 800 450" {...this.props}>
+      <svg id="mySVG" ref={(ref) => this.svg = ref} width={804} height={454} viewBox="0 0 800 450">
         <path
           fill="transparent"
           stroke="#000"
@@ -283,4 +285,5 @@ class HsCourt extends Component {
   }
 }
 
-export default HsCourt;
+const mapStateToProps = state => state;
+export default connect(mapStateToProps, { fireNewShotEvent })(HsCourt);
