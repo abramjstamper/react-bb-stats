@@ -9,18 +9,51 @@ class HsCourt extends Component {
     }
   }
 
-  alertTester = (e, location) => {
+  componentDidMount(){
+    this.pt = this.svg.createSVGPoint();
+  }
+
+  createCircle = (x, y) => {
+    var svgNS = "http://www.w3.org/2000/svg";
+    var myCircle = document.createElementNS(svgNS, "circle");
+    myCircle.setAttributeNS(null, "id", "mycircle");
+    myCircle.setAttributeNS(null, "cx", x);
+    myCircle.setAttributeNS(null, "cy", y);
+    myCircle.setAttributeNS(null, "r", 5);
+    myCircle.setAttributeNS(null, "fill", "transparent");
+    myCircle.setAttributeNS(null, "stroke", "black");
+
+    document.getElementById("mySVG").appendChild(myCircle);
+  }
+
+  getClickPosition = (e, click) => {
+    // see stack overflow for link on how to get relative SVG points even when scaling svg
+    //https://stackoverflow.com/questions/29261304/how-to-get-the-click-coordinates-relative-to-svg-element-holding-the-onclick-lis
+    this.pt.x = Math.round(e.clientX);
+    this.pt.y = Math.round(e.clientY);
+    let cursor =  this.pt.matrixTransform(this.svg.getScreenCTM().inverse());
+    return { x: cursor.x, y: cursor.y };
+  }
+
+
+  alertTester = (e, floorLocation) => {
+    let coord = this.getClickPosition(e, e.target);
     if (e.type === 'click') {
-      console.log(`MISSED SHOT: ${location}`);
+      console.log(`MISSED SHOT: ${floorLocation}`);
     } else if (e.type === 'contextmenu') {
-      console.log(`MADE SHOT: ${location}`);
+      console.log(`MADE SHOT: ${floorLocation}`);
     }
+
+    console.log(`(${coord.x}, ${coord.y})`);
+    this.createCircle(coord.x, coord.y);
+
+
   }
 
   render() {
 
     return (
-      <svg width={804} height={454} viewBox="0 0 800 450" {...this.props}>
+      <svg id="mySVG" ref={(ref) => this.svg = ref} width={804} height={454} viewBox="0 0 800 450" {...this.props}>
         <path
           fill="transparent"
           stroke="#000"
