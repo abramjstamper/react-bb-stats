@@ -9,21 +9,31 @@ class HsCourt extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.pt = this.svg.createSVGPoint();
   }
 
-  createCircle = (x, y) => {
+  markMadeBasket = (x, y) => {
     var svgNS = "http://www.w3.org/2000/svg";
     var myCircle = document.createElementNS(svgNS, "circle");
     myCircle.setAttributeNS(null, "id", "mycircle");
     myCircle.setAttributeNS(null, "cx", x);
     myCircle.setAttributeNS(null, "cy", y);
     myCircle.setAttributeNS(null, "r", 5);
-    myCircle.setAttributeNS(null, "fill", "transparent");
+    myCircle.setAttributeNS(null, "fill", "orange");
     myCircle.setAttributeNS(null, "stroke", "black");
 
     document.getElementById("mySVG").appendChild(myCircle);
+  }
+
+  markMissedBasket = (x, y) => {
+    var svgNS = "http://www.w3.org/2000/svg";
+    var path = document.createElementNS(svgNS, "path");
+    path.setAttributeNS(null, "id", "path");
+    path.setAttributeNS(null, "stroke", "black");
+    path.setAttributeNS(null, "d", `M ${x-5}, ${y-5} L ${x+5}, ${y+5} M ${x+5}, ${y-5} L ${x-5}, ${y+5}`);
+
+    document.getElementById("mySVG").appendChild(path);
   }
 
   getClickPosition = (e, click) => {
@@ -31,7 +41,7 @@ class HsCourt extends Component {
     //https://stackoverflow.com/questions/29261304/how-to-get-the-click-coordinates-relative-to-svg-element-holding-the-onclick-lis
     this.pt.x = Math.round(e.clientX);
     this.pt.y = Math.round(e.clientY);
-    let cursor =  this.pt.matrixTransform(this.svg.getScreenCTM().inverse());
+    let cursor = this.pt.matrixTransform(this.svg.getScreenCTM().inverse());
     return { x: cursor.x, y: cursor.y };
   }
 
@@ -40,12 +50,13 @@ class HsCourt extends Component {
     let coord = this.getClickPosition(e, e.target);
     if (e.type === 'click') {
       console.log(`MISSED SHOT: ${floorLocation}`);
+      this.markMissedBasket(coord.x, coord.y);
     } else if (e.type === 'contextmenu') {
       console.log(`MADE SHOT: ${floorLocation}`);
+      this.markMadeBasket(coord.x, coord.y);
     }
 
     console.log(`(${coord.x}, ${coord.y})`);
-    this.createCircle(coord.x, coord.y);
 
 
   }
