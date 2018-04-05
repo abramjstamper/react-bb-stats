@@ -10,6 +10,8 @@ class Games extends Component {
   componentWillMount(){
     this.gameId = this.props.location.payload.id;
     this.game = this.props.games[this.props.location.payload.id];
+    this.homeTeam = this.props.teams[this.game.info.homeTeam];
+    this.awayTeam = this.props.teams[this.game.info.awayTeam];
   }
 
   render() {
@@ -26,20 +28,20 @@ class Games extends Component {
         </div>
 
         <div className="columns">
-          <div className="column"><Score teamName="Wildkats" score="100"/></div>
+          <div className="column"><Score gameId={this.gameId} homeTeam={false} teamName={this.awayTeam.teamName}/></div>
           <div className="column"><Timer game={this.game} gameId={this.gameId} /></div>
-          <div className="column"><Score teamName="Wildkats" score="100"/></div>
+          <div className="column"><Score gameId={this.gameId} homeTeam={true} teamName={this.homeTeam.teamName}/></div>
         </div>
 
         <div className="columns">
-          <div className="column"><PlayerList /></div>
+          <div className="column"><PlayerList gameId={this.gameId} teamId={this.awayTeam.id}/></div>
           <div className="column"><Court game={this.game} gameId={this.gameId}/></div>
-          <div className="column"><PlayerList /></div>
+          <div className="column"><PlayerList gameId={this.gameId} teamId={this.homeTeam.id}/></div>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => { return { games: state.games, location: state.location } };
+const mapStateToProps = state => { return { games: state.games, teams: state.teams, location: state.location } };
 export default connect(mapStateToProps)(Games);

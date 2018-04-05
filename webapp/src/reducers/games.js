@@ -14,8 +14,33 @@ function games(state = [], action) {
       clone[action.game.info.id].clock = action.clock;
       return clone;
     case "NEW_SHOT_EVENT":
+      console.log(action);
       clone[action.game.info.id].temp.lastShotCoord = action.coord;
       clone[action.game.info.id].temp.lastShotLocation = action.location;
+      if (action.isMissed === false) {
+        switch (action.location) {
+          case "left side outside shot":
+            clone[action.game.info.id].temp.awayScore = 3 + (clone[action.game.info.id].temp.awayScore || 0);
+            break;
+          case "right side outside shot":
+            clone[action.game.info.id].temp.homeScore = 3 + (clone[action.game.info.id].temp.homeScore || 0);
+            break;
+          case "left side layups":
+          case "left side dunk":
+          case "left side inside shot":
+          case "left side paint":
+          case "left side basket":
+            clone[action.game.info.id].temp.awayScore = 2 + (clone[action.game.info.id].temp.awayScore || 0);
+            break;
+          case "right side layups":
+          case "right side dunk":
+          case "ride side inside shot":
+          case "right side paint":
+          case "right side basket":
+            clone[action.game.info.id].temp.homeScore = 2 + (clone[action.game.info.id].temp.homeScore || 0);
+            break;
+        }
+      }
       return clone;
     default:
       return clone;

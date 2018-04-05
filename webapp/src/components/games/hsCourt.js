@@ -49,17 +49,19 @@ class HsCourt extends Component {
 
 
   alertTester = (e, floorLocation) => {
+    let isMissed = true;
     let coord = this.getClickPosition(e, e.target);
     if (e.type === 'click') {
       console.log(`MISSED SHOT: ${floorLocation}`);
       this.markMissedBasket(coord.x, coord.y);
+      isMissed = true;
     } else if (e.type === 'contextmenu') {
       console.log(`MADE SHOT: ${floorLocation}`);
       this.markMadeBasket(coord.x, coord.y);
+      isMissed = false;
     }
 
-    console.log(this.props);
-    this.props.fireNewShotEvent(this.props.game, coord, floorLocation);
+    this.props.fireNewShotEvent(this.props.game, coord, floorLocation, isMissed);
     console.log(`(${coord.x}, ${coord.y})`);
   }
 

@@ -84,11 +84,12 @@ export function createNewGameEvent(game, event) {
   }
 }
 
-export function fireNewShotEvent(game, coord, location) {
+export function fireNewShotEvent(game, coord, location, isMissed) {
   return {
     type: "NEW_SHOT_EVENT",
     game: game,
     coord: coord,
-    location: location
+    location: location,
+    isMissed: isMissed
   }
 }
