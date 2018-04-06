@@ -2,23 +2,56 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { substitutePlayerIntoGame, substitutePlayerOutOfGame } from '../../actions/actionCreators';
 
+const MAX_PLAYERS = 5;
+
 class PlayerList extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      playersInGame: {},
+      playersActive: {}
+    };
+  }
+
+  substitutePlayerIntoGame = (player) => {
+    if (!this.state.playersActive[player.id]) {
+      if (Object.keys(this.state.playersInGame).length < MAX_PLAYERS) {
+        this.setState({
+          playersInGame: { ...this.state.playersInGame, [player.id]: player },
+          playersActive: { ...this.state.playersActive, [player.id]: true }
+        });
+      }
+    } else {
+      // console.log({ ...this.state.playersActive, [player.id]: false });
+      const tempPlayersInGame = this.state.playersInGame;
+      delete tempPlayersInGame[player.id];
+      this.setState({
+        playersInGame: tempPlayersInGame,
+        playersActive: { ...this.state.playersActive, [player.id]: false }
+      });
+
+    }
+  }
+
 
   renderPlayerButton = (id) => {
     const player = this.props.teams[this.props.teamId].players[id];
-    return (
-      <label key={id} className="panel-block">
-        <button className="button">{player.homeNumber}</button>
-        {`${player.fname} ${player.lname}`}
-      </label>
-    );
+    if (this.state.playersActive[player.id]) {
+      return (
+        <label key={id} className="panel-block">
+          <button className="button">{player.homeNumber}</button>
+          {`${player.fname} ${player.lname}`}
+        </label>
+      );
+    }
   }
 
   renderPlayerSelector = (id) => {
     const player = this.props.teams[this.props.teamId].players[id];
     return (
-      <label key={id} className="panel-block" onClick={() => this.props.substitutePlayerIntoGame(this.props.game, player)}>
-        <input type="checkbox" />
+      <label key={id} className="panel-block">
+        <input type="checkbox" onChange={() => this.substitutePlayerIntoGame(player)} checked={!!this.state.playersActive[player.id]} />
         {`${player.homeNumber} - ${player.fname} ${player.lname}`}
       </label>
     );
@@ -30,7 +63,7 @@ class PlayerList extends Component {
       return (
         <div>
           <nav className="panel">
-            {Object.keys(this.props.teams[this.props.teamId].players).map(this.renderPlayerButton)}
+            {Object.keys(this.state.playersActive).map(this.renderPlayerButton)}
           </nav>
         </div>
       );
@@ -52,6 +85,6 @@ export default connect(
   mapStateToProps,
   {
     substitutePlayerIntoGame,
-    substitutePlayerOutOfGame 
+    substitutePlayerOutOfGame
   }
 )(PlayerList);

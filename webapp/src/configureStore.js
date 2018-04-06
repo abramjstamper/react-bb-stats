@@ -17,13 +17,13 @@ const middlewares = applyMiddleware(middleware);
 const enhancers = composeEnhancers(enhancer, middlewares);
 const store = createStore(rootReducer, preloadedState, enhancers);
 
-// if (module.hot && process.env.NODE_ENV === 'development') {
-//   module.hot.accept('./reducers/index', () => {
-//     const reducers = require('./reducers/index');
-//     const rootReducer = combineReducers({ ...reducers, location: reducer });
-//     store.replaceReducer(rootReducer);
-//   });
-// }
+if (module.hot && process.env.NODE_ENV === 'development') {
+  module.hot.accept('./reducers/index', () => {
+    const reducers = require('./reducers/index');
+    const rootReducer = combineReducers({ ...reducers, location: reducer });
+    store.replaceReducer(rootReducer);
+  });
+}
 
 return { store, thunk };
 }

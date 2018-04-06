@@ -30,11 +30,11 @@ render(
 );
 
 
-// if (module.hot && process.env.NODE_ENV === 'development') {
-//   module.hot.accept('./components/App', () => {
-//     const App = require('./components/App').default
+if (module.hot && process.env.NODE_ENV === 'development') {
+  module.hot.accept('./components/App', () => {
+    const App = require('./components/App').default
 
-//     render(App)
-//   });
-// }
+    render(App)
+  });
+}
 registerServiceWorker();

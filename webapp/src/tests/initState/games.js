@@ -10,8 +10,8 @@ const games = {
       location: 'Memorial Gym'
     },
     temp: {
-      homeTeamPlayersInGame: [],
-      awayTeamPlayersInGame: []
+      homeTeamPlayersInGame: {},
+      awayTeamPlayersInGame: {}
     },
     clock: {
       
