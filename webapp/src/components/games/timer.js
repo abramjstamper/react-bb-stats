@@ -43,8 +43,7 @@ class Timer extends Component {
 
   pauseTimer = () => {
     this.timer.runTimer = false;
-    this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: false });
-    this.forceUpdate();
+    this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: false });   
   }
 
   timerTick = () => {
@@ -53,7 +52,7 @@ class Timer extends Component {
       this.timer.secondsRemaining--;
       this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
       this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: true });
-      this.forceUpdate();
+      
       if (this.timer.secondsRemaining > 0) {
         this.timerTick();
       }
@@ -61,7 +60,6 @@ class Timer extends Component {
         this.timer.runTimer = false;
         this.timer.hasFinished = true;
         this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
-        this.forceUpdate();
       }
     }, 1000);
   }
@@ -71,7 +69,6 @@ class Timer extends Component {
       this.timer.secondsRemaining += amount;
       this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
       this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
-      this.forceUpdate();
     }
   }
 
@@ -80,7 +77,6 @@ class Timer extends Component {
       this.period = this.period + 1;
       this.timer = this.createTimer(TIME_LEFT_IN_SECONDS);
       this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
-      this.forceUpdate();
     }
   }
 

@@ -93,3 +93,19 @@ export function fireNewShotEvent(game, coord, location, isMissed) {
     isMissed: isMissed
   }
 }
+
+export function substitutePlayerIntoGame(game, player) {
+  return {
+    type: "SUBSTITUTE_PLAYER_INTO_GAME",
+    game: game,
+    player: player
+  }
+}
+
+export function substitutePlayerOutOfGame(game, player) {
+  return {
+    type: "SUBSTITUTE_PLAYER_OUT_OF_GAME",
+    game: game,
+    player: player
+  }
+}

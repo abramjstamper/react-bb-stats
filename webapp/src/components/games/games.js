@@ -28,15 +28,15 @@ class Games extends Component {
         </div>
 
         <div className="columns">
-          <div className="column"><Score gameId={this.gameId} homeTeam={false} teamName={this.awayTeam.teamName}/></div>
+          <div className="column"><Score score={this.game.temp.awayScore} teamName={this.awayTeam.teamName}/></div>
           <div className="column"><Timer game={this.game} gameId={this.gameId} /></div>
-          <div className="column"><Score gameId={this.gameId} homeTeam={true} teamName={this.homeTeam.teamName}/></div>
+          <div className="column"><Score core={this.game.temp.homeScore} teamName={this.homeTeam.teamName}/></div>
         </div>
 
         <div className="columns">
-          <div className="column"><PlayerList gameId={this.gameId} teamId={this.awayTeam.id}/></div>
+          <div className="column"><PlayerList game={this.game} teamId={this.awayTeam.id}/></div>
           <div className="column"><Court game={this.game} gameId={this.gameId}/></div>
-          <div className="column"><PlayerList gameId={this.gameId} teamId={this.homeTeam.id}/></div>
+          <div className="column"><PlayerList game={this.game} teamId={this.homeTeam.id}/></div>
         </div>
       </div>
     );

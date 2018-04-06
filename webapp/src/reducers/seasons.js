@@ -2,7 +2,7 @@ function seasons(state = [], action) {
   if (typeof state === 'undefined') {
     return state;
   }
-  const clone = state;
+  const clone = {...state};
   switch (action.type) {
     case 'CREATE_NEW_SEASON':
       if (typeof action.season === 'undefined')

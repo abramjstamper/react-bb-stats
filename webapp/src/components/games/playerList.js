@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { substitutePlayerIntoGame, substitutePlayerOutOfGame } from '../../actions/actionCreators';
 
 class PlayerList extends Component {
+
+  renderPlayerButton = (id) => {
+    const player = this.props.teams[this.props.teamId].players[id];
+    return (
+      <label key={id} className="panel-block">
+        <button className="button">{player.homeNumber}</button>
+        {`${player.fname} ${player.lname}`}
+      </label>
+    );
+  }
 
   renderPlayerSelector = (id) => {
     const player = this.props.teams[this.props.teamId].players[id];
     return (
-      <label key={id} className="panel-block">
+      <label key={id} className="panel-block" onClick={() => this.props.substitutePlayerIntoGame(this.props.game, player)}>
         <input type="checkbox" />
         {`${player.homeNumber} - ${player.fname} ${player.lname}`}
       </label>
@@ -15,30 +26,11 @@ class PlayerList extends Component {
 
   render() {
 
-    if (this.props.games[this.props.gameId].clock.runTimer) {
+    if (this.props.game.clock.runTimer) {
       return (
         <div>
           <nav className="panel">
-            <label className="panel-block">
-              <input type="checkbox" />
-              Player 1
-          </label>
-            <label className="panel-block">
-              <input type="checkbox" />
-              Player 2
-          </label>
-            <label className="panel-block">
-              <input type="checkbox" />
-              Player 3
-          </label>
-            <label className="panel-block">
-              <input type="checkbox" />
-              Player 4
-          </label>
-            <label className="panel-block">
-              <input type="checkbox" />
-              Player 5
-          </label>
+            {Object.keys(this.props.teams[this.props.teamId].players).map(this.renderPlayerButton)}
           </nav>
         </div>
       );
@@ -55,4 +47,11 @@ class PlayerList extends Component {
 }
 
 const mapStateToProps = state => { return { games: state.games, teams: state.teams } };
-export default connect(mapStateToProps)(PlayerList);
+
+export default connect(
+  mapStateToProps,
+  {
+    substitutePlayerIntoGame,
+    substitutePlayerOutOfGame 
+  }
+)(PlayerList);

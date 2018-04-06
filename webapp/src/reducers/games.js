@@ -1,14 +1,17 @@
+const MAX_PLAYERS = 5;
+
 function games(state = [], action) {
   if (typeof state === 'undefined') {
     return state;
   }
-  const clone = state;
+  const clone = {...state};
   switch (action.type) {
     case "CREATE_NEW_GAME":
       if (typeof action.game === 'undefined')
         return clone;
       clone[3] = {}
       clone[3].info = action.game;
+      clone[3].temp = {};
       return clone;
     case "UPDATE_CLOCK":
       clone[action.game.info.id].clock = action.clock;
@@ -41,6 +44,14 @@ function games(state = [], action) {
             break;
         }
       }
+      return clone;
+    case "SUBSTITUTE_PLAYER_INTO_GAME":
+      if (clone[action.game.info.id].temp.homeTeamPlayersInGame.length < MAX_PLAYERS){
+        clone[action.game.info.id].temp.homeTeamPlayersInGame.push(action.player);
+      }
+      return clone;
+    case "SUBSTITUTE_PLAYER_OUT_OF_GAME":
+      clone[action.game.info.id].temp.homeTeamPlayersInGame.push(action.player);
       return clone;
     default:
       return clone;
