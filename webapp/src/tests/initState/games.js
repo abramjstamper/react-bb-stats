@@ -16,7 +16,7 @@ const games = {
     clock: {
       
     },
-    plays: {
+    events: {
 
     }
   },
@@ -36,7 +36,7 @@ const games = {
     temp: {
 
     },
-    plays: {
+    events: {
 
     }
   }

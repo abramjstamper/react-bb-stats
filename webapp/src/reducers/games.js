@@ -4,7 +4,7 @@ function games(state = [], action) {
   if (typeof state === 'undefined') {
     return state;
   }
-  const clone = {...state};
+  const clone = { ...state };
   switch (action.type) {
     case "CREATE_NEW_GAME":
       if (typeof action.game === 'undefined')
@@ -46,12 +46,10 @@ function games(state = [], action) {
       }
       return clone;
     case "SUBSTITUTE_PLAYER_INTO_GAME":
-      // if (Object.keys(clone[action.game.info.id].temp.homeTeamPlayersInGame).length < MAX_PLAYERS){
-      //   clone[action.game.info.id].temp.homeTeamPlayersInGame[`${action.player.id}`] = action.player;
-      // }
+      clone[action.game.info.id].events[0] = { playerId: action.player.id, eventId: 0, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
       return clone;
     case "SUBSTITUTE_PLAYER_OUT_OF_GAME":
-      // clone[action.game.info.id].temp.homeTeamPlayersInGame.push(action.player);
+      clone[action.game.info.id].events[1] = { playerId: action.player.id, eventId: 1, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
       return clone;
     default:
       return clone;
