@@ -5,6 +5,7 @@ function games(state = [], action) {
     return state;
   }
   const clone = { ...state };
+  let key = {};
   switch (action.type) {
     case "CREATE_NEW_GAME":
       if (typeof action.game === 'undefined')
@@ -51,12 +52,16 @@ function games(state = [], action) {
       clone[action.game.info.id].temp.lastPlayerClicked = action.player;
       return clone;
     case "REGISTER_GAME_EVENT":
+      clone[action.game.info.id].temp.lastEventAction = action.event;
+      console.log(action);
       return clone;
     case "SUBSTITUTE_PLAYER_INTO_GAME":
-      clone[action.game.info.id].events[0] = { playerId: action.player.id, eventId: 0, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+      key = Object.keys(clone[action.game.info.id].events).length;
+      clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 0, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
       return clone;
     case "SUBSTITUTE_PLAYER_OUT_OF_GAME":
-      clone[action.game.info.id].events[1] = { playerId: action.player.id, eventId: 1, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+      key = Object.keys(clone[action.game.info.id].events).length;
+      clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 1, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
       return clone;
     default:
       return clone;

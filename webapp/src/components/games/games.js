@@ -32,9 +32,9 @@ class Games extends Component {
         </div>
 
         <div className="columns">
-          <div className="column"><Score selectPlayer={this.props.selectPlayer} game={this.game} score={this.game.temp.awayScore} teamName={this.awayTeam.teamName} /></div>
+          <div className="column"><Score selectPlayer={this.props.selectPlayer} game={this.game} team={this.awayTeam} score={this.game.temp.awayScore} teamName={this.awayTeam.teamName} /></div>
           <div className="column"><Timer game={this.game} gameId={this.gameId} /></div>
-          <div className="column"><Score selectPlayer={this.props.selectPlayer} game={this.game} score={this.game.temp.homeScore} teamName={this.homeTeam.teamName} /></div>
+          <div className="column"><Score selectPlayer={this.props.selectPlayer} game={this.game} team={this.homeTeam} score={this.game.temp.homeScore} teamName={this.homeTeam.teamName} /></div>
         </div>
 
         <div className="columns">
