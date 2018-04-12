@@ -109,3 +109,19 @@ export function substitutePlayerOutOfGame(game, player) {
     player: player
   }
 }
+
+export function selectPlayer(game, player) {
+  return {
+    type: "SELECT_PLAYER",
+    game: game,
+    player: player
+  }
+}
+
+export function registerGameEvent(game, event) {
+  return {
+    type: "REGISTER_GAME_EVENT",
+    game: game,
+    event: event
+  }
+}

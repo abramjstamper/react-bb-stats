@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { substitutePlayerIntoGame, substitutePlayerOutOfGame } from '../../actions/actionCreators';
+import { substitutePlayerIntoGame, substitutePlayerOutOfGame, selectPlayer } from '../../actions/actionCreators';
 
 const MAX_PLAYERS = 5;
 
@@ -36,11 +36,11 @@ class PlayerList extends Component {
 
 
   renderPlayerButton = (id) => {
-    const player = this.props.teams[this.props.teamId].players[id];
+    const player = this.props.team.players[id];
     if (this.state.playersActive[player.id]) {
       return (
         <label key={id} className="panel-block">
-          <button className="button">{player.homeNumber}</button>
+          <button className="button" onClick={() => this.props.selectPlayer(this.props.game, player)}>{player.homeNumber}</button>
           {`${player.fname} ${player.lname}`}
         </label>
       );
@@ -48,7 +48,7 @@ class PlayerList extends Component {
   }
 
   renderPlayerSelector = (id) => {
-    const player = this.props.teams[this.props.teamId].players[id];
+    const player = this.props.team.players[id];
     return (
       <label key={id} className="panel-block">
         <input type="checkbox" onChange={() => this.substitutePlayerIntoGame(player)} checked={!!this.state.playersActive[player.id]} />
@@ -71,7 +71,7 @@ class PlayerList extends Component {
       return (
         <div>
           <nav className="panel">
-            {Object.keys(this.props.teams[this.props.teamId].players).map(this.renderPlayerSelector)}
+            {Object.keys(this.props.team.players).map(this.renderPlayerSelector)}
           </nav>
         </div>
       );
@@ -85,6 +85,7 @@ export default connect(
   mapStateToProps,
   {
     substitutePlayerIntoGame,
-    substitutePlayerOutOfGame
+    substitutePlayerOutOfGame,
+    selectPlayer
   }
 )(PlayerList);

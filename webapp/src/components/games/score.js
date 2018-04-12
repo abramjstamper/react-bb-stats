@@ -7,6 +7,7 @@ class Score extends Component {
         <div className="card-content has-text-centered">
           <h1>{this.props.teamName}</h1>
           <h2>{this.props.score || 0}</h2>
+          <button className="button" onClick={() => {this.props.selectPlayer(this.game, "TEAM")}}>{this.props.teamName}</button>
         </div>
       </div>
     );

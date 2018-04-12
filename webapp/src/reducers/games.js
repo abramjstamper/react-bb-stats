@@ -20,7 +20,9 @@ function games(state = [], action) {
       console.log(action);
       clone[action.game.info.id].temp.lastShotCoord = action.coord;
       clone[action.game.info.id].temp.lastShotLocation = action.location;
+      clone[action.game.info.id].temp.actionText = "Select Player for FG Miss"
       if (action.isMissed === false) {
+        clone[action.game.info.id].temp.actionText = "Select Player for FG Make"
         switch (action.location) {
           case "left side outside shot":
             clone[action.game.info.id].temp.awayScore = 3 + (clone[action.game.info.id].temp.awayScore || 0);
@@ -44,6 +46,11 @@ function games(state = [], action) {
             break;
         }
       }
+      return clone;
+    case "SELECT_PLAYER":
+      clone[action.game.info.id].temp.lastPlayerClicked = action.player;
+      return clone;
+    case "REGISTER_GAME_EVENT":
       return clone;
     case "SUBSTITUTE_PLAYER_INTO_GAME":
       clone[action.game.info.id].events[0] = { playerId: action.player.id, eventId: 0, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }

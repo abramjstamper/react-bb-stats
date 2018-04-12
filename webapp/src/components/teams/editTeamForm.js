@@ -10,8 +10,8 @@ class EditTeamForm extends Component {
   submit = (e) => {  
     e.preventDefault();
     this.props.editTeam(this.props.form.editTeamForm.values);
-    this.props.reset("editTeamForm");
-    this.forceUpdate();
+    // this.props.reset("editTeamForm");
+    // this.forceUpdate();
   }
 
   componentWillMount () {

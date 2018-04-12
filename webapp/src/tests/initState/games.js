@@ -10,8 +10,7 @@ const games = {
       location: 'Memorial Gym'
     },
     temp: {
-      homeTeamPlayersInGame: {},
-      awayTeamPlayersInGame: {}
+      actionText: "Select Starters & Begin Clock to Start"
     },
     clock: {
       
@@ -34,7 +33,7 @@ const games = {
 
     },
     temp: {
-
+      actionText: "Select Starters & Begin Clock to Start"
     },
     events: {
 
