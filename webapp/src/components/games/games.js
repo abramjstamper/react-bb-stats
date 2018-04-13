@@ -13,7 +13,7 @@ class Games extends Component {
 
   componentWillMount() {
     this.gameId = this.props.location.payload.id;
-    this.game = this.props.games[this.props.location.payload.id];
+    this.game = this.props.games[this.props.location.payload.id]; 
     this.homeTeam = this.props.teams[this.game.info.homeTeam];
     this.awayTeam = this.props.teams[this.game.info.awayTeam];
   }
