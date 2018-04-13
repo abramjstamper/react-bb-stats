@@ -1,7 +1,17 @@
 // const MAX_PLAYERS = 5;
 
+function getNextEventKey(events) {
+  return Object.keys(events).length;
+}
+
 function games(state = {}, action) {
   const clone = { ...state };
+  let key = -1;
+  try {
+    key = getNextEventKey(clone[action.game.info.id].events)
+  } catch (err) {
+    console.log(err);
+  }
   switch (action.type) {
     case "CREATE_NEW_GAME":
       if (typeof action.game === 'undefined')
@@ -53,7 +63,7 @@ function games(state = {}, action) {
             // clone[action.game.info.id].temp.awayScore = 3 + (clone[action.game.info.id].temp.awayScore || 0);
             break;
           case "right side outside shot":
-          clone[action.game.info.id].temp.lastEventAction = "MISSED_3PT_FG";
+            clone[action.game.info.id].temp.lastEventAction = "MISSED_3PT_FG";
             // clone[action.game.info.id].temp.homeScore = 3 + (clone[action.game.info.id].temp.homeScore || 0);
             break;
           case "left side layups":
@@ -76,7 +86,6 @@ function games(state = {}, action) {
       }
       return clone;
     case "SELECT_PLAYER":
-      let key = Object.keys(clone[action.game.info.id].events).length;
       clone[action.game.info.id].temp.lastPlayerClicked = action.player;
       switch (clone[action.game.info.id].temp.lastEventAction) {
         case 'TURNOVER':
@@ -89,16 +98,16 @@ function games(state = {}, action) {
           clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 9, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
         case "MISSED_2PT_FG":
-        clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 3, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 3, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
         case "MISSED_3PT_FG":
-        clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 4, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 4, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
         case "2PT_FG":
-        clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 5, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 5, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
         case "3PT_FG":
-        clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 6, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 6, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
       }
       console.log(clone[action.game.info.id].events);
@@ -106,14 +115,12 @@ function games(state = {}, action) {
     case "REGISTER_GAME_EVENT":
       clone[action.game.info.id].temp.lastEventAction = action.event;
       return clone;
-    // case "SUBSTITUTE_PLAYER_INTO_GAME":
-    //   key = Object.keys(clone[action.game.info.id].events).length;
-    //   clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 0, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
-    //   return clone;
-    // case "SUBSTITUTE_PLAYER_OUT_OF_GAME":
-    //   key = Object.keys(clone[action.game.info.id].events).length;
-    //   clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 1, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
-    //   return clone;
+    case "SUBSTITUTE_PLAYER_INTO_GAME":
+      clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 0, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+      return clone;
+    case "SUBSTITUTE_PLAYER_OUT_OF_GAME":
+      clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 1, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+      return clone;
     default:
       return clone;
   }
