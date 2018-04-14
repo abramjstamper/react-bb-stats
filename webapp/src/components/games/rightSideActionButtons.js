@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { registerGameEvent } from '../../actions/actionCreators';
 import { eventsLookup } from '../../constants';
+import Dropdown from '../form/dropdown';
 
 class RightSideActionButtons extends Component {
   render() {
@@ -16,7 +17,23 @@ class RightSideActionButtons extends Component {
           <div className="buttons has-addons is-centered">
             <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["BLOCK"])}>Block</button>
             <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["ASSIST_ATTEMPT"])}>Assist Attempt</button>
-            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["TIMEOUT"])}>Timeout</button>
+            <Dropdown name="Timeout" content={
+              <div>
+                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["MEDIA_TIMEOUT"])} class="dropdown-item">
+                  Media Timeout
+                </a>
+                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["OFFICIAL_TIMEOUT"])} class="dropdown-item">
+                  Official Timeout
+                </a>
+                <hr class="dropdown-divider"/>
+                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["TIMEOUT"])} class="dropdown-item">
+                  Full Timeout
+                </a>
+                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["PARTIAL_TIMEOUT"])} class="dropdown-item">
+                  Partial Timeout
+                </a>
+              </div>
+            } />
           </div>
         </div>
       </div>

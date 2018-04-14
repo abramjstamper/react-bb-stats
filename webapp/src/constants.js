@@ -21,7 +21,11 @@ export const eventsLookup = {
   "TECHNICAL_FOUL": 21,
   "OFFENSIVE_FOUL": 20,
   "FOUL_DRAWN": 22,
-  "TAKEN_CHARGE": 23
+  "TAKEN_CHARGE": 23,
+  "MEDIA_TIMEOUT": 24,
+  "OFFICIAL_TIMEOUT": 25,
+  "TIMEOUT": 26,
+  "PARTIAL_TIMEOUT": 27
 };
 
 export const qualifiers = {

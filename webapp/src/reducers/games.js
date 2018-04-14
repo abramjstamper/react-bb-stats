@@ -138,6 +138,14 @@ function games(state = {}, action) {
           clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['ASSIST'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           clone[action.game.info.id].temp.actionText = "Select an Action";
           break;
+        case eventsLookup['PARTIAL_TIMEOUT']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, teamId: action.team.id, eventId: eventsLookup['PARTIAL_TIMEOUT'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].temp.actionText = "Select an Action";
+          break;
+        case eventsLookup['TIMEOUT']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, teamId: action.team.id, eventId: eventsLookup['TIMEOUT'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].temp.actionText = "Select an Action";
+          break;
       }
       console.log(clone[action.game.info.id].events);
       return clone;
