@@ -6,15 +6,17 @@ import { eventsLookupById } from '../../../constants';
 
 class Edit extends Component {
 
+  numericalSort = (a, b) => {
+    if (a > b) return a;
+    if (b > a) return b;
+    return a;
+  }
+
   render() {
     const columns = [{
       Header: '',
       accessor: 'id',
-      sortMethod: (a, b) => {
-        if (a > b) return a;
-        if (b > a) return b;
-        return a;
-      },
+      sortMethod: this.numericalSort,
       maxWidth: 100
     }, {
       Header: 'Player',
@@ -26,6 +28,7 @@ class Edit extends Component {
     }, {
       Header: 'Period',
       accessor: 'period',
+      sortMethod: this.numericalSort,
       maxWidth: 100
     }, {
       Header: 'Time',
