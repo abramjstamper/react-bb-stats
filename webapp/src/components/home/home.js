@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CreateAccount from './createAccount';
-import Login from './login';
+import CreateAccount from './CreateAccount';
+import Login from './Login';
 
 class Home extends Component {
 

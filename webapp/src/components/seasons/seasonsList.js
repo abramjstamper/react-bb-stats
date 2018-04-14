@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'redux-first-router-link';
-import CreateSeasonForm from './createSeasonForm';
+import CreateSeasonForm from './CreateSeasonForm';
 
 class Seasons extends Component {
 

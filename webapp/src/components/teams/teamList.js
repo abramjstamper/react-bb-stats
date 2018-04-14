@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'redux-first-router-link';
-import CreateTeamForm from './createTeamForm';
+import CreateTeamForm from './CreateTeamForm';
 
 class TeamList extends Component {
 

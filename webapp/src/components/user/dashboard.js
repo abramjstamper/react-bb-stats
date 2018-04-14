@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SideMenu from './sideMenu';
+import SideMenu from './SideMenu';
 
 class Dashboard extends Component {
   render() {

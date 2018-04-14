@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { registerGameEvent } from '../../actions/actionCreators';
-import { eventsLookup } from '../../constants';
+import { registerGameEvent } from '../../../actions/actionCreators';
+import { eventsLookup } from '../../../constants';
 
 class LeftSideActionButtons extends Component {
   render() {

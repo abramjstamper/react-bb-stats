@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link, { NavLink } from 'redux-first-router-link';
 
-class NavBar extends Component {
+class Navbar extends Component {
   render() {
     return (
       <div>
@@ -23,4 +23,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default Navbar;

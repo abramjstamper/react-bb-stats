@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
-import FieldWrapper from '../form/fieldWrapper';
-import Modal from '../uiElements/modal';
+import { Field, reduxForm, reset } from 'redux-form';
+import FieldWrapper from '../elements/FieldWrapper';
+import Modal from '../elements/Modal';
 import { createNewSeason } from '../../actions/actionCreators';
 
 class CreateSeasonForm extends Component {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {fireNewShotEvent} from '../../actions/actionCreators';
+import {fireNewShotEvent} from '../../../actions/actionCreators';
 
-class HsCourt extends Component {
+class HSCourt extends Component {
 
   constructor() {
     super();
@@ -288,4 +288,4 @@ class HsCourt extends Component {
 }
 
 const mapStateToProps = state => state;
-export default connect(mapStateToProps, { fireNewShotEvent })(HsCourt);
+export default connect(mapStateToProps, { fireNewShotEvent })(HSCourt);

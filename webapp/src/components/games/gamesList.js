@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'redux-first-router-link';
-import CreateGameForm from './createGameForm';
+import CreateGameForm from './CreateGameForm';
 
 class GamesList extends Component {
 

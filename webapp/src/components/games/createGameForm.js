@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
-import FieldWrapper from '../form/fieldWrapper';
-import Modal from '../uiElements/modal';
-import { createNewGame } from '../../actions/actionCreators';
+import { Field, reduxForm, reset } from 'redux-form';
 import { push } from 'redux-first-router'
+import FieldWrapper from '../elements/FieldWrapper';
+import Modal from '../elements/Modal';
+import { createNewGame } from '../../actions/actionCreators';
 
 class CreateGameForm extends Component {
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { registerGameEvent } from '../../actions/actionCreators';
-import { eventsLookup } from '../../constants';
-import Dropdown from '../form/dropdown';
+import { registerGameEvent } from '../../../actions/actionCreators';
+import { eventsLookup } from '../../../constants';
+import Dropdown from '../../elements/Dropdown';
 
 class RightSideActionButtons extends Component {
   render() {

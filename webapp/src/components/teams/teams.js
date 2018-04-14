@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updatePlayerActiveStatus } from '../../actions/actionCreators';
-import CreatePlayerForm from './createPlayerForm';
-import EditTeamForm from './editTeamForm';
+import CreatePlayerForm from './CreatePlayerForm';
+import EditTeamForm from './EditTeamForm';
 
 class Team extends Component {
 

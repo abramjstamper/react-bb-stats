@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
-import FieldWrapper from '../form/fieldWrapper';
-import Modal from '../uiElements/modal';
+import FieldWrapper from '../elements/FieldWrapper';
+import Modal from '../elements/Modal';
 import { editTeam } from '../../actions/actionCreators';
 
 class EditTeamForm extends Component {

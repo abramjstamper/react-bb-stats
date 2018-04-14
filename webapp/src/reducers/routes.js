@@ -2,13 +2,13 @@ import { NOT_FOUND } from 'redux-first-router'
 import _ from 'lodash';
 
 //Components
-import Home from "../components/home/home";
-import Dashboard from "../components/user/dashboard";
-import Games_List from "../components/games/gamesList";
-import Games from "../components/games/games";
-import Team_List from "../components/teams/teamList";
-import Teams from "../components/teams/teams";
-import Seasons_List from "../components/seasons/seasonsList";
+import Home from "../components/home/Home";
+import Dashboard from "../components/user/Dashboard";
+import Games_List from "../components/games/GamesList";
+import Games from "../components/games/Games";
+import Team_List from "../components/teams/TeamList";
+import Teams from "../components/teams/Teams";
+import Seasons_List from "../components/seasons/SeasonsList";
 
 // Action Types
 export const HOME = 'COMPONENTS/HOME';

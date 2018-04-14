@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
-import FieldWrapper from '../form/fieldWrapper';
-import { login } from '../../actions/actionCreators';
+import { reduxForm, reset } from 'redux-form';
 import { push } from 'redux-first-router'
+import FieldWrapper from '../elements/FieldWrapper';
+import { login } from '../../actions/actionCreators';
 
 class Login extends Component {
 

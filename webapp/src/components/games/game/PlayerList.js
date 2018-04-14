@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { substitutePlayerIntoGame, substitutePlayerOutOfGame, selectPlayer } from '../../actions/actionCreators';
+import { substitutePlayerIntoGame, substitutePlayerOutOfGame, selectPlayer } from '../../../actions/actionCreators';
 
 const MAX_PLAYERS = 5;
 
