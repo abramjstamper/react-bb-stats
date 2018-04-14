@@ -12,7 +12,7 @@ class Games extends Component {
   constructor() {
     super();
     this.state = {
-      currentTab: 0,
+      currentTab: 1,
       tabs: {
         "GAME": 0,
         "EDIT": 1,
@@ -30,17 +30,17 @@ class Games extends Component {
   renderTabComponent = () => {
     switch (this.state.currentTab) {
       case this.state.tabs["GAME"]:
-        return (<Game />);
+        return (<Game game={this.game} homeTeam={this.homeTeam} awayTeam={this.awayTeam} />);
       case this.state.tabs["EDIT"]:
-        return (<Edit />);
+        return (<Edit game={this.game} homeTeam={this.homeTeam} awayTeam={this.awayTeam} />);
       case this.state.tabs["TEAMS"]:
         return (<Teams />);
       case this.state.tabs["INFO"]:
-        return (<Info />);
+        return (<Info game={this.game} homeTeam={this.homeTeam} awayTeam={this.awayTeam} />);
       case this.state.tabs["REPORTS"]:
-        return (<Reports />);
+        return (<Reports game={this.game} homeTeam={this.homeTeam} awayTeam={this.awayTeam} />);
       default:
-        return (<Info />);
+        return (<Info game={this.game} homeTeam={this.homeTeam} awayTeam={this.awayTeam} />);
     }
   }
 

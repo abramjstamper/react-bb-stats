@@ -19,17 +19,17 @@ class RightSideActionButtons extends Component {
             <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["ASSIST_ATTEMPT"])}>Assist Attempt</button>
             <Dropdown name="Timeout" content={
               <div>
-                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["MEDIA_TIMEOUT"])} class="dropdown-item">
+                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["MEDIA_TIMEOUT"])} className="dropdown-item">
                   Media Timeout
                 </a>
-                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["OFFICIAL_TIMEOUT"])} class="dropdown-item">
+                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["OFFICIAL_TIMEOUT"])} className="dropdown-item">
                   Official Timeout
                 </a>
-                <hr class="dropdown-divider"/>
-                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["TIMEOUT"])} class="dropdown-item">
+                <hr className="dropdown-divider"/>
+                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["TIMEOUT"])} className="dropdown-item">
                   Full Timeout
                 </a>
-                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["PARTIAL_TIMEOUT"])} class="dropdown-item">
+                <a onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["PARTIAL_TIMEOUT"])} className="dropdown-item">
                   Partial Timeout
                 </a>
               </div>

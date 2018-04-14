@@ -28,6 +28,36 @@ export const eventsLookup = {
   "PARTIAL_TIMEOUT": 27
 };
 
+export const eventsLookupById = {
+  0: "SUBSTITUTE_PLAYER_INTO_GAME",
+  1: "SUBSTITUTE_PLAYER_OUT_OF_GAME",
+  3: "MISSED_FT",
+  4: "MISSED_2PT_FG",
+  5: "MISSED_3PT_FG",
+  6: "FT",
+  7: "2PT_FG",
+  8: "3PT_FG",
+  9: "MISSED_PUTBACK",
+  10: "PUTBACK",
+  11: "VIOLATION_FT",
+  12: "BLOCK",
+  13: "DEFENSIVE_REBOUND",
+  14: "OFFENSIVE_REBOUND",
+  15: "ASSIST",
+  16: "ASSIST_ATTEMPT",
+  17: "TURNOVER",
+  18: "STEAL",
+  19: "FOUL",
+  20: "OFFENSIVE_FOUL",
+  21: "TECHNICAL_FOUL",
+  22: "FOUL_DRAWN",
+  23: "TAKEN_CHARGE",
+  24: "MEDIA_TIMEOUT",
+  25: "OFFICIAL_TIMEOUT",
+  26: "TIMEOUT",
+  27: "PARTIAL_TIMEOUT"
+}
+
 export const qualifiers = {
 
 }
