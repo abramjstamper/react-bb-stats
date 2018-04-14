@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { registerGameEvent } from '../../actions/actionCreators';
+import { eventsLookup } from '../../constants';
 
 class RightSideActionButtons extends Component {
   render() {
@@ -8,14 +9,14 @@ class RightSideActionButtons extends Component {
       <div className="card">
         <div className="card-content">
           <div className="buttons has-addons is-centered">
-            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, "TURNOVER")}>Turnover</button>
-            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, "STEAL")}>Steal</button>
-            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, "JUMPBALL")}>Jump Ball</button>
+            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["TURNOVER"])}>Turnover</button>
+            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["STEAL"])}>Steal</button>
+            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["JUMPBALL"])}>Jump Ball</button>
           </div>
           <div className="buttons has-addons is-centered">
-            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, "BLOCK")}>Block</button>
-            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, "ASSIST_ATTEMPT")}>Assist Attempt</button>
-            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, "TIMEOUT")}>Timeout</button>
+            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["BLOCK"])}>Block</button>
+            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["ASSIST_ATTEMPT"])}>Assist Attempt</button>
+            <button className="button" onClick={() => this.props.registerGameEvent(this.props.game, eventsLookup["TIMEOUT"])}>Timeout</button>
           </div>
         </div>
       </div>

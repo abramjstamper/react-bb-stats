@@ -110,11 +110,12 @@ export function substitutePlayerOutOfGame(game, player) {
   }
 }
 
-export function selectPlayer(game, player) {
+export function selectPlayer(game, team, player) {
   return {
     type: "SELECT_PLAYER",
     game: game,
-    player: player
+    player: player,
+    team: team
   }
 }
 

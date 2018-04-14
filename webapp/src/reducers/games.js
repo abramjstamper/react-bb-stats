@@ -1,4 +1,4 @@
-// const MAX_PLAYERS = 5;
+import { eventsLookup, shotQualifiersLookup } from '../constants';
 
 function getNextEventKey(events) {
   return Object.keys(events).length;
@@ -32,7 +32,7 @@ function games(state = {}, action) {
         switch (action.location) {
           case "left side outside shot":
           case "right side outside shot":
-            clone[action.game.info.id].temp.lastEventAction = "3PT_FG";
+            clone[action.game.info.id].temp.lastEventAction = eventsLookup['3PT_FG'];
             break;
           case "left side layups":
           case "left side dunk":
@@ -44,7 +44,7 @@ function games(state = {}, action) {
           case "ride side inside shot":
           case "right side paint":
           case "right side basket":
-            clone[action.game.info.id].temp.lastEventAction = "2PT_FG";
+            clone[action.game.info.id].temp.lastEventAction = eventsLookup['2PT_FG'];
             break;
         }
       } else {
@@ -52,7 +52,7 @@ function games(state = {}, action) {
         switch (action.location) {
           case "left side outside shot":
           case "right side outside shot":
-            clone[action.game.info.id].temp.lastEventAction = "MISSED_3PT_FG";
+            clone[action.game.info.id].temp.lastEventAction = eventsLookup['MISSED_3PT_FG'];
             break;
           case "left side layups":
           case "left side dunk":
@@ -64,7 +64,7 @@ function games(state = {}, action) {
           case "ride side inside shot":
           case "right side paint":
           case "right side basket":
-            clone[action.game.info.id].temp.lastEventAction = "MISSED_2PT_FG";
+            clone[action.game.info.id].temp.lastEventAction = eventsLookup['MISSED_2PT_FG'];
             break;
         }
       }
@@ -72,37 +72,47 @@ function games(state = {}, action) {
     case "SELECT_PLAYER":
       clone[action.game.info.id].temp.lastPlayerClicked = action.player;
       switch (clone[action.game.info.id].temp.lastEventAction) {
-        case 'TURNOVER':
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 7, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+        case eventsLookup['TURNOVER']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['TURNOVER'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
-        case 'STEAL':
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 8, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+        case eventsLookup['STEAL']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['STEAL'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
-        case 'FOUL':
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 9, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+        case eventsLookup['FOUL']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['FOUL'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
-        case 'OFFENSIVE_FOUL':
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 10, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+        case eventsLookup['OFFENSIVE_FOUL']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['OFFENSIVE_FOUL'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
-        case 'TECHNICAL_FOUL':
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 11, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+        case eventsLookup['TECHNICAL_FOUL']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['TECHNICAL_FOUL'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
-        case 'BLOCK':
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 12, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+        case eventsLookup['BLOCK']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['BLOCK'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
-        case "MISSED_2PT_FG":
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 3, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+        case eventsLookup['MISSED_2PT_FG']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['MISSED_2PT_FG'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
-        case "MISSED_3PT_FG":
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 4, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+        case eventsLookup['MISSED_3PT_FG']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['MISSED_3PT_FG'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
           break;
-        case "2PT_FG":
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 5, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
-          // clone[action.game.info.id].temp.homeScore = 2 + (clone[action.game.info.id].temp.homeScore || 0);
+        case eventsLookup['2PT_FG']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['2PT_GF'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          if (action.team.id === action.game.info.homeTeam) {
+            clone[action.game.info.id].temp.homeScore = 2 + (clone[action.game.info.id].temp.homeScore || 0);
+          } else {
+            clone[action.game.info.id].temp.awayScore = 2 + (clone[action.game.info.id].temp.awayScore || 0);
+          }
+          clone[action.game.info.id].temp.actionText = "Select Player for Assist";
+          clone[action.game.info.id].temp.lastEventAction = eventsLookup['ASSIST'];
           break;
-        case "3PT_FG":
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 6, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
-          // clone[action.game.info.id].temp.homeScore = 3 + (clone[action.game.info.id].temp.homeScore || 0);
+        case eventsLookup['3PT_FG']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['3PT_FG'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          if (action.team.id === action.game.info.homeTeam) {
+            clone[action.game.info.id].temp.homeScore = 3 + (clone[action.game.info.id].temp.homeScore || 0);
+          } else {
+            clone[action.game.info.id].temp.awayScore = 3 + (clone[action.game.info.id].temp.awayScore || 0);
+          }
           break;
       }
       console.log(clone[action.game.info.id].events);

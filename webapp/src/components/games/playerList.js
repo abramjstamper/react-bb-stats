@@ -40,7 +40,7 @@ class PlayerList extends Component {
     if (this.state.playersActive[player.id]) {
       return (
         <label key={id} className="panel-block">
-          <button className="button" onClick={() => this.props.selectPlayer(this.props.game, player)}>{player.homeNumber}</button>
+          <button className="button" onClick={() => this.props.selectPlayer(this.props.game, this.props.team, player)}>{player.homeNumber}</button>
           {`${player.fname} ${player.lname}`}
         </label>
       );

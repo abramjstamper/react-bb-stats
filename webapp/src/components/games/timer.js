@@ -5,7 +5,7 @@ import ChevronUpIcon from 'mdi-react/ChevronUpIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 
 //FIXME: Should come from the rule set
-const TIME_LEFT_IN_SECONDS = 15;
+const TIME_LEFT_IN_SECONDS = 60;
 const MAX_PERIOD = 4;
 
 class Timer extends Component {
