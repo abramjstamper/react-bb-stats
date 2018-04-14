@@ -212,14 +212,14 @@ function games(state = {}, action) {
           });
           clone[action.game.info.id].temp.actionText = "Select an Action";
           break;
-        case eventsLookup['PARTIAL_TIMEOUT']:
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, teamId: action.team.id, eventId: eventsLookup['PARTIAL_TIMEOUT'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
-          clone[action.game.info.id].temp.actionText = "Select an Action";
-          break;
-        case eventsLookup['TIMEOUT']:
-          clone[action.game.info.id].events[key] = { playerId: action.player.id, teamId: action.team.id, eventId: eventsLookup['TIMEOUT'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
-          clone[action.game.info.id].temp.actionText = "Select an Action";
-          break;
+        // case eventsLookup['PARTIAL_TIMEOUT']:
+        //   clone[action.game.info.id].events[key] = { playerId: action.player.id, teamId: action.team.id, eventId: eventsLookup['PARTIAL_TIMEOUT'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+        //   clone[action.game.info.id].temp.actionText = "Select an Action";
+        //   break;
+        // case eventsLookup['TIMEOUT']:
+        //   clone[action.game.info.id].events[key] = { playerId: action.player.id, teamId: action.team.id, eventId: eventsLookup['TIMEOUT'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+        //   clone[action.game.info.id].temp.actionText = "Select an Action";
+        //   break;
       }
       console.log(clone[action.game.info.id].events);
       return clone;
@@ -227,10 +227,22 @@ function games(state = {}, action) {
       clone[action.game.info.id].temp.lastEventAction = action.event;
       return clone;
     case "SUBSTITUTE_PLAYER_INTO_GAME":
-      clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 0, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+      addPlayerEvent(clone, action, {
+        playerId: action.player.id,
+        eventId: eventsLookup['SUBSTITUTE_PLAYER_INTO_GAME'],
+        time: action.game.clock.displayTime,
+        gameId: action.game.info.id,
+        period: action.game.clock.period
+      });
       return clone;
     case "SUBSTITUTE_PLAYER_OUT_OF_GAME":
-      clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: 1, time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+      addPlayerEvent(clone, action, {
+        playerId: action.player.id,
+        eventId: eventsLookup['SUBSTITUTE_PLAYER_OUT_OF_GAME'],
+        time: action.game.clock.displayTime,
+        gameId: action.game.info.id,
+        period: action.game.clock.period
+      });
       return clone;
     default:
       return clone;
