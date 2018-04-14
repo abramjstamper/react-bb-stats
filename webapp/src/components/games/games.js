@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import Game from './game/Game';
+import Edit from './edit/Edit';
+import Teams from './teams/Teams';
+import Info from './info/Info';
+import Reports from './reports/Reports';
 
 class Games extends Component {
 
@@ -18,6 +23,27 @@ class Games extends Component {
     }
   }
 
+  setTab = (tabName) => {
+    this.setState({ currentTab: this.state.tabs[tabName] });
+  }
+
+  renderTabComponent = () => {
+    switch (this.state.currentTab) {
+      case this.state.tabs["GAME"]:
+        return (<Game />);
+      case this.state.tabs["EDIT"]:
+        return (<Edit />);
+      case this.state.tabs["TEAMS"]:
+        return (<Teams />);
+      case this.state.tabs["INFO"]:
+        return (<Info />);
+      case this.state.tabs["REPORTS"]:
+        return (<Reports />);
+      default:
+        return (<Info />);
+    }
+  }
+
   componentWillMount() {
     this.gameId = this.props.location.payload.id;
     this.game = this.props.games[this.props.location.payload.id];
@@ -30,13 +56,14 @@ class Games extends Component {
       <div>
         <div className="tabs is-centered is-large">
           <ul>
-            <li className="is-active"><a>Game</a></li>
-            <li><a>Edit</a></li>
-            <li><a>Teams</a></li>
-            <li><a>Info</a></li>
-            <li><a>Reports</a></li>
+            <li className={classNames({ "is-active": this.state.currentTab === this.state.tabs["GAME"] })} onClick={() => this.setTab("GAME")}><a>Game</a></li>
+            <li className={classNames({ "is-active": this.state.currentTab === this.state.tabs["EDIT"] })} onClick={() => this.setTab("EDIT")}><a>Edit</a></li>
+            <li className={classNames({ "is-active": this.state.currentTab === this.state.tabs["TEAMS"] })} onClick={() => this.setTab("TEAMS")}><a>Teams</a></li>
+            <li className={classNames({ "is-active": this.state.currentTab === this.state.tabs["INFO"] })} onClick={() => this.setTab("INFO")}><a>Info</a></li>
+            <li className={classNames({ "is-active": this.state.currentTab === this.state.tabs["REPORTS"] })} onClick={() => this.setTab("REPORTS")}><a>Reports</a></li>
           </ul>
         </div>
+        {this.renderTabComponent()}
       </div>
     );
   }
