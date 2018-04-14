@@ -74,9 +74,13 @@ function games(state = {}, action) {
       switch (clone[action.game.info.id].temp.lastEventAction) {
         case eventsLookup['TURNOVER']:
           clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['TURNOVER'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].temp.actionText = "Select Player for Steal";
+          clone[action.game.info.id].temp.lastEventAction = eventsLookup['STEAL'];
           break;
         case eventsLookup['STEAL']:
           clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['STEAL'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].temp.actionText = "Select Player for Turnover";
+          clone[action.game.info.id].temp.lastEventAction = eventsLookup['TURNOVER'];
           break;
         case eventsLookup['FOUL']:
           clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['FOUL'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
@@ -89,12 +93,18 @@ function games(state = {}, action) {
           break;
         case eventsLookup['BLOCK']:
           clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['BLOCK'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].temp.actionText = "Select Player for Rebound";
+          clone[action.game.info.id].temp.lastEventAction = eventsLookup['DEFENSIVE_REBOUND'];
           break;
         case eventsLookup['MISSED_2PT_FG']:
           clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['MISSED_2PT_FG'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].temp.actionText = "Select Player for Rebound";
+          clone[action.game.info.id].temp.lastEventAction = eventsLookup['DEFENSIVE_REBOUND'];
           break;
         case eventsLookup['MISSED_3PT_FG']:
           clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['MISSED_3PT_FG'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].temp.actionText = "Select Player for Rebound";
+          clone[action.game.info.id].temp.lastEventAction = eventsLookup['DEFENSIVE_REBOUND'];
           break;
         case eventsLookup['2PT_FG']:
           clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['2PT_GF'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
@@ -113,6 +123,20 @@ function games(state = {}, action) {
           } else {
             clone[action.game.info.id].temp.awayScore = 3 + (clone[action.game.info.id].temp.awayScore || 0);
           }
+          clone[action.game.info.id].temp.actionText = "Select Player for Assist";
+          clone[action.game.info.id].temp.lastEventAction = eventsLookup['ASSIST'];
+          break;
+        case eventsLookup['OFFENSIVE_REBOUND']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['OFFENSIVE_REBOUND'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].temp.actionText = "Select an Action";
+          break;
+        case eventsLookup['DEFENSIVE_REBOUND']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['DEFENSIVE_REBOUND'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].temp.actionText = "Select an Action";
+          break;
+        case eventsLookup['ASSIST']:
+          clone[action.game.info.id].events[key] = { playerId: action.player.id, eventId: eventsLookup['ASSIST'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
+          clone[action.game.info.id].temp.actionText = "Select an Action";
           break;
       }
       console.log(clone[action.game.info.id].events);
