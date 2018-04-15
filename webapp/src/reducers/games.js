@@ -12,9 +12,8 @@ function games(state = {}, action) {
     case "CREATE_NEW_GAME":
       if (typeof action.game === 'undefined')
         return clone;
-      clone[3] = {}
-      clone[3].info = action.game;
-      clone[3].temp = {};
+      const newKey = Object.keys(clone).length;
+      clone[newKey] = { temp: {}, info: action.game, events: {}, clock: {} };
       return clone;
     case "UPDATE_CLOCK":
       clone[action.game.info.id].clock = action.clock;
@@ -74,7 +73,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['TURNOVER'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           clone[action.game.info.id].temp.actionText = "Select Player for Steal";
           clone[action.game.info.id].temp.lastEventAction = eventsLookup['STEAL'];
@@ -85,7 +85,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['STEAL'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           clone[action.game.info.id].temp.actionText = "Select Player for Turnover";
           clone[action.game.info.id].temp.lastEventAction = eventsLookup['TURNOVER'];
@@ -96,7 +97,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['FOUL'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           break;
         case eventsLookup['OFFENSIVE_FOUL']:
@@ -105,7 +107,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['OFFENSIVE_FOUL'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           break;
         case eventsLookup['TECHNICAL_FOUL']:
@@ -114,7 +117,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['TECHNICAL_FOUL'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           break;
         case eventsLookup['BLOCK']:
@@ -123,7 +127,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['BLOCK'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           clone[action.game.info.id].temp.actionText = "Select Player for Rebound";
           clone[action.game.info.id].temp.lastEventAction = eventsLookup['DEFENSIVE_REBOUND'];
@@ -134,7 +139,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['MISSED_2PT_FG'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           clone[action.game.info.id].temp.actionText = "Select Player for Rebound";
           clone[action.game.info.id].temp.lastEventAction = eventsLookup['DEFENSIVE_REBOUND'];
@@ -145,7 +151,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['MISSED_3PT_FG'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           clone[action.game.info.id].temp.actionText = "Select Player for Rebound";
           clone[action.game.info.id].temp.lastEventAction = eventsLookup['DEFENSIVE_REBOUND'];
@@ -156,7 +163,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['2PT_FG'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           if (action.team.id === action.game.info.homeTeam) {
             clone[action.game.info.id].temp.homeScore = 2 + (clone[action.game.info.id].temp.homeScore || 0);
@@ -172,7 +180,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['3PT_FG'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           if (action.team.id === action.game.info.homeTeam) {
             clone[action.game.info.id].temp.homeScore = 3 + (clone[action.game.info.id].temp.homeScore || 0);
@@ -188,7 +197,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['OFFENSIVE_REBOUND'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           clone[action.game.info.id].temp.actionText = "Select an Action";
           break;
@@ -198,7 +208,8 @@ function games(state = {}, action) {
             eventId: eventsLookup['DEFENSIVE_REBOUND'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           clone[action.game.info.id].temp.actionText = "Select an Action";
           break;
@@ -208,20 +219,35 @@ function games(state = {}, action) {
             eventId: eventsLookup['ASSIST'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
-            period: action.game.clock.period
+            period: action.game.clock.period,
+            teamId: action.team.id
           });
           clone[action.game.info.id].temp.actionText = "Select an Action";
           break;
-        // case eventsLookup['PARTIAL_TIMEOUT']:
-        //   clone[action.game.info.id].events[key] = { playerId: action.player.id, teamId: action.team.id, eventId: eventsLookup['PARTIAL_TIMEOUT'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
-        //   clone[action.game.info.id].temp.actionText = "Select an Action";
-        //   break;
-        // case eventsLookup['TIMEOUT']:
-        //   clone[action.game.info.id].events[key] = { playerId: action.player.id, teamId: action.team.id, eventId: eventsLookup['TIMEOUT'], time: action.game.clock.displayTime, gameId: action.game.info.id, period: action.game.clock.period }
-        //   clone[action.game.info.id].temp.actionText = "Select an Action";
-        //   break;
+        case eventsLookup['PARTIAL_TIMEOUT']:
+          addPlayerEvent(clone, action, {
+            playerId: action.player.id,
+            eventId: eventsLookup['ASSIST'],
+            time: action.game.clock.displayTime,
+            gameId: action.game.info.id,
+            period: action.game.clock.period,
+            teamId: action.team.id
+          });
+          clone[action.game.info.id].temp.actionText = "Select an Action";
+          break;
+        case eventsLookup['TIMEOUT']:
+          addPlayerEvent(clone, action, {
+            playerId: action.player.id,
+            eventId: eventsLookup['ASSIST'],
+            time: action.game.clock.displayTime,
+            gameId: action.game.info.id,
+            period: action.game.clock.period,
+            teamId: action.team.id
+          });
+          clone[action.game.info.id].temp.actionText = "Select an Action";
+          break;
       }
-      console.log(clone[action.game.info.id].events);
+      console.log(JSON.stringify(clone[action.game.info.id].events));
       return clone;
     case "REGISTER_GAME_EVENT":
       clone[action.game.info.id].temp.lastEventAction = action.event;
@@ -232,7 +258,8 @@ function games(state = {}, action) {
         eventId: eventsLookup['SUBSTITUTE_PLAYER_INTO_GAME'],
         time: action.game.clock.displayTime,
         gameId: action.game.info.id,
-        period: action.game.clock.period
+        period: action.game.clock.period,
+        teamId: action.team.id
       });
       return clone;
     case "SUBSTITUTE_PLAYER_OUT_OF_GAME":
@@ -241,7 +268,8 @@ function games(state = {}, action) {
         eventId: eventsLookup['SUBSTITUTE_PLAYER_OUT_OF_GAME'],
         time: action.game.clock.displayTime,
         gameId: action.game.info.id,
-        period: action.game.clock.period
+        period: action.game.clock.period,
+        teamId: action.team.id
       });
       return clone;
     default:

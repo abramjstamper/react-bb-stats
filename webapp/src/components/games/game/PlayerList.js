@@ -21,7 +21,7 @@ class PlayerList extends Component {
           playersInGame: { ...this.state.playersInGame, [player.id]: player },
           playersActive: { ...this.state.playersActive, [player.id]: true }
         });
-        this.props.substitutePlayerIntoGame(this.props.game, player);
+        this.props.substitutePlayerIntoGame(this.props.game, player, this.props.team);
       }
     } else {
       const tempPlayersInGame = this.state.playersInGame;

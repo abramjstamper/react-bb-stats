@@ -5,7 +5,7 @@ import ChevronUpIcon from 'mdi-react/ChevronUpIcon';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 
 //FIXME: Should come from the rule set
-const TIME_LEFT_IN_SECONDS = 60;
+const TIME_LEFT_IN_SECONDS = 30;
 const MAX_PERIOD = 4;
 
 class Timer extends Component {
@@ -19,7 +19,12 @@ class Timer extends Component {
   }
 
   componentWillMount() {
-    this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
+    if(Object.keys(this.props.game.clock).length === 0){
+      this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, seconds: this.timer.seconds, period: this.period, runTimer: this.timer.runTimer });
+    } else {
+      this.createTimer(this.props.game.clock.seconds);
+      this.period = this.props.game.clock.period;
+    }
   }
 
   createTimer = (timeInSeconds) => {

@@ -14,17 +14,22 @@ class Edit extends Component {
 
   render() {
     const columns = [{
-      Header: '',
+      Header: 'ID',
       accessor: 'id',
       sortMethod: this.numericalSort,
       maxWidth: 100
     }, {
+      Header: 'Team',
+      id: 'teamId',
+      accessor: d => { return this.props.teams[d.teamId].teamName}
+    }, {
       Header: 'Player',
-      accessor: 'playerId'
+      id: 'playerId',
+      accessor: d => `${this.props.teams[d.teamId].players[d.playerId].homeNumber} - ${this.props.teams[d.teamId].players[d.playerId].fname} ${this.props.teams[d.teamId].players[d.playerId].lname}`
     }, {
       Header: 'Event',
-      id: 'eventId',      
-      accessor: d =>  eventsLookupById[d.eventId]
+      id: 'eventId',
+      accessor: d => eventsLookupById[d.eventId]
     }, {
       Header: 'Period',
       accessor: 'period',
@@ -39,6 +44,7 @@ class Edit extends Component {
     return (
       <div className="container">
         <ReactTable
+          className="table"
           data={Object.keys(this.props.game.events).map(
             (key) => {
               return { ...this.props.game.events[key], id: key }

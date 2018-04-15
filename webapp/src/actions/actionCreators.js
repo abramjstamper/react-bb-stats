@@ -94,19 +94,21 @@ export function fireNewShotEvent(game, coord, location, isMissed) {
   }
 }
 
-export function substitutePlayerIntoGame(game, player) {
+export function substitutePlayerIntoGame(game, player, team) {
   return {
     type: "SUBSTITUTE_PLAYER_INTO_GAME",
     game: game,
-    player: player
+    player: player,
+    team: team
   }
 }
 
-export function substitutePlayerOutOfGame(game, player) {
+export function substitutePlayerOutOfGame(game, player, team) {
   return {
     type: "SUBSTITUTE_PLAYER_OUT_OF_GAME",
     game: game,
-    player: player
+    player: player,
+    team: team
   }
 }
 
