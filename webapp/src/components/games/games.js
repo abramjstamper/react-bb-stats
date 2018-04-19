@@ -12,7 +12,7 @@ class Games extends Component {
   constructor() {
     super();
     this.state = {
-      currentTab: 0,
+      currentTab: 4,
       tabs: {
         "GAME": 0,
         "EDIT": 1,
