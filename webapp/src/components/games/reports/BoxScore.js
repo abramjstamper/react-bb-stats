@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { eventsLookup } from '../../../constants';
 
 class BoxScore extends Component {
   constructor() {
@@ -8,7 +9,6 @@ class BoxScore extends Component {
 
   componentWillMount() {
     this.createStatDataStructure();
-    this.generateGameStatsForDataStructure();
   }
 
   createStatDataStructure = () => {
@@ -17,14 +17,16 @@ class BoxScore extends Component {
       number: -1,
       name: "not set",
       position: "not set",
-      totalFieldGoals: "0/0",
-      twoPTFieldGoals: "0/0",
-      threePTFieldGoals: "0/0",
-      freethrows: "0/0",
-      totalPoints: 0,
+      totalFieldGoalsMade: 0,
+      totalFieldGoalsMissed: 0,
+      twoPTFieldGoalsMade: 0,
+      twoPTFieldGoalsMissed: 0,
+      threePTFieldGoalsMade: 0,
+      threePTFieldGoalsMissed: 0,
+      freethrowsMade: 0,
+      freethrowsMissed: 0,
       offensiveRebounds: 0,
       defensiveRebounds: 0,
-      totalRebounds: 0,
       personalFouls: 0,
       foulsDrawn: 0,
       assists: 0,
@@ -39,12 +41,31 @@ class BoxScore extends Component {
       tempState[player] = { ...defaultData, id: player, name: `${this.props.team.players[player].fname} ${this.props.team.players[player].lname}`, position: this.props.team.players[player].position || "", number: this.props.team.players[player].homeNumber };
       return tempState[player];
     });
-    this.setState({ ...tempState });
+    this.setState(tempState, () => this.generateGameStatsForDataStructure(this.state));
   }
 
-  generateGameStatsForDataStructure = () => {
-    // this.props.game.events.map
+  generateGameStatsForDataStructure = (tempState) => {
+    Object.values(this.props.game.events).map((event) => { this.evaluateEvent(event, tempState); });
   }
+
+  evaluateEvent = (event, state) => {
+    const tempState = { ...state };
+    console.log(event);
+    console.log(tempState);
+    console.log(tempState[event.playerId]);
+    // switch (event.eventId) {
+    //   case (eventsLookup["MISSED_FT"]):
+    //     tempState[event.playerId].freethrowsMissed += 1;
+    //     break;
+    //   case (eventsLookup["MISSED_2PT_FG"]):
+    //     tempState[event.playerId].twoPTFieldGoalsMissed += 1;
+    //     break;
+    //   case (eventsLookup["MISSED_3PT_FG"]):
+    //     tempState[event.playerId].threePTFieldGoalsMissed += 1;
+        // break;
+    // }
+    this.setState(tempState);
+  };
 
   renderLineItem = (player) => {
     return (
@@ -53,14 +74,14 @@ class BoxScore extends Component {
         <td>{player.name}</td>
         <td>{player.position}</td>
         <td></td>
-        <td>{player.totalFieldGoals}</td>
-        <td>{player.twoPTFieldGoals}</td>
-        <td>{player.threePTFieldGoals}</td>
-        <td>{player.freethrows}</td>
-        <td>{player.totalPoints}</td>
+        <td>{player.totalFieldGoalsMade}/{player.totalFieldGoalsMade + player.totalFieldGoalsMissed}</td>
+        <td>{player.twoPTFieldGoalsMade}/{player.twoPTFieldGoalsMade + player.twoPTFieldGoalsMissed}</td>
+        <td>{player.threePTFieldGoalsMade}/{player.threePTFieldGoalsMade + player.threePTFieldGoalsMissed}</td>
+        <td>{player.freethrowsMade}/{player.freethrowsMade + player.freethrowsMissed}</td>
+        <td>{player.totalFieldGoalsMade + player.twoPTFieldGoalsMade + player.threePTFieldGoalsMade + player.freethrowsMade}</td>
         <td>{player.offensiveRebounds}</td>
         <td>{player.defensiveRebounds}</td>
-        <td>{player.totalRebounds}</td>
+        <td>{player.offensiveRebounds + player.defensiveRebounds}</td>
         <td>{player.personalFouls}</td>
         <td>{player.foulsDrawn}</td>
         <td>{player.assists}</td>
@@ -101,7 +122,7 @@ class BoxScore extends Component {
           </tr>
         </thead>
         <tbody>
-          {Object.values(this.state).sort((a, b) => { if(a.number > b.number) return 1; if(a.number < b.number) return -1; return 0; }).map(this.renderLineItem)}
+          {Object.values(this.state).sort((a, b) => { if (a.number > b.number) return 1; if (a.number < b.number) return -1; return 0; }).map(this.renderLineItem)}
         </tbody>
       </table>
     );
