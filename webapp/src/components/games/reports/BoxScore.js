@@ -50,21 +50,61 @@ class BoxScore extends Component {
 
   evaluateEvent = (event, state) => {
     const tempState = { ...state };
-    console.log(event);
-    console.log(tempState);
-    console.log(tempState[event.playerId]);
-    // switch (event.eventId) {
-    //   case (eventsLookup["MISSED_FT"]):
-    //     tempState[event.playerId].freethrowsMissed += 1;
-    //     break;
-    //   case (eventsLookup["MISSED_2PT_FG"]):
-    //     tempState[event.playerId].twoPTFieldGoalsMissed += 1;
-    //     break;
-    //   case (eventsLookup["MISSED_3PT_FG"]):
-    //     tempState[event.playerId].threePTFieldGoalsMissed += 1;
-        // break;
-    // }
-    this.setState(tempState);
+    if (event.teamId === this.props.team.id) {
+      switch (event.eventId) {
+        case (eventsLookup["MISSED_FT"]):
+          tempState[event.playerId].freethrowsMissed += 1;
+          break;
+        case (eventsLookup["MISSED_2PT_FG"]):
+          tempState[event.playerId].twoPTFieldGoalsMissed += 1;
+          tempState[event.playerId].totalFieldGoalsMissed += 1;
+          break;
+        case (eventsLookup["MISSED_3PT_FG"]):
+          tempState[event.playerId].threePTFieldGoalsMissed += 1;
+          tempState[event.playerId].totalFieldGoalsMissed += 1;
+          break;
+        case (eventsLookup["FT"]):
+          tempState[event.playerId].freethrowsMade += 1;
+          break;
+        case (eventsLookup["2PT_FG"]):
+          tempState[event.playerId].twoPTFieldGoalsMade += 1;
+          tempState[event.playerId].totalFieldGoalsMade += 1;
+          break;
+        case (eventsLookup["3PT_FG"]):
+          tempState[event.playerId].threePTFieldGoalsMade += 1;
+          tempState[event.playerId].totalFieldGoalsMade += 1;
+          break;
+        case (eventsLookup["DEFENSIVE_REBOUND"]):
+          tempState[event.playerId].defensiveRebounds += 1;
+          break;
+        case (eventsLookup["OFFENSIVE_REBOUND"]):
+          tempState[event.playerId].offensiveRebounds += 1;
+          break;
+        case (eventsLookup["ASSIST"]):
+          tempState[event.playerId].assists += 1;
+          break;
+        case (eventsLookup["ASSIST_ATTEMPT"]):
+          tempState[event.playerId].assistAttempts += 1;
+          break;
+        case (eventsLookup["TURNOVER"]):
+          tempState[event.playerId].turnovers += 1;
+          break;
+        case (eventsLookup["STEAL"]):
+          tempState[event.playerId].steals += 1;
+          break;
+        case (eventsLookup["FOUL"]):
+        case (eventsLookup["OFFENSIVE_FOUL"]):
+          tempState[event.playerId].personalFouls += 1;
+          break;
+        case (eventsLookup["FOUL_DRAWN"]):
+          tempState[event.playerId].foulsDrawn += 1;
+          break;
+        case (eventsLookup["BLOCK"]):
+          tempState[event.playerId].blocks += 1;
+          break;
+      }
+      this.setState(tempState);
+    }
   };
 
   renderLineItem = (player) => {
