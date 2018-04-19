@@ -55,6 +55,7 @@ class BoxScore extends Component {
         case (eventsLookup["MISSED_FT"]):
           tempState[event.playerId].freethrowsMissed += 1;
           break;
+        case (eventsLookup["MISSED_PUTBACK"]):
         case (eventsLookup["MISSED_2PT_FG"]):
           tempState[event.playerId].twoPTFieldGoalsMissed += 1;
           tempState[event.playerId].totalFieldGoalsMissed += 1;
@@ -66,6 +67,7 @@ class BoxScore extends Component {
         case (eventsLookup["FT"]):
           tempState[event.playerId].freethrowsMade += 1;
           break;
+        case (eventsLookup["PUTBACK"]):
         case (eventsLookup["2PT_FG"]):
           tempState[event.playerId].twoPTFieldGoalsMade += 1;
           tempState[event.playerId].totalFieldGoalsMade += 1;
