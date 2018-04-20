@@ -41,6 +41,8 @@ function games(state = {}, action) {
           case "right side basket":
             clone[action.game.info.id].temp.lastEventAction = eventsLookup['2PT_FG'];
             break;
+          default:
+            throw new Error("Unexpected input when recieving a NEW_SHOT_EVENT");
         }
       } else {
         clone[action.game.info.id].temp.actionText = "Select Player for FG Miss"
@@ -61,6 +63,8 @@ function games(state = {}, action) {
           case "right side basket":
             clone[action.game.info.id].temp.lastEventAction = eventsLookup['MISSED_2PT_FG'];
             break;
+          default:
+            throw new Error("Unexpected input when recieving a NEW_SHOT_EVENT");
         }
       }
       return clone;
@@ -100,6 +104,19 @@ function games(state = {}, action) {
             period: action.game.clock.period,
             teamId: action.team.id
           });
+          clone[action.game.info.id].temp.actionText = "Select Player for Foul Drawn";
+          clone[action.game.info.id].temp.lastEventAction = eventsLookup['FOUL_DRAWN'];
+          break;
+        case eventsLookup['FOUL_DRAWN']:
+          addPlayerEvent(clone, action, {
+            playerId: action.player.id,
+            eventId: eventsLookup['FOUL_DRAWN'],
+            time: action.game.clock.displayTime,
+            gameId: action.game.info.id,
+            period: action.game.clock.period,
+            teamId: action.team.id
+          });
+          clone[action.game.info.id].temp.actionText = "Select an Action";
           break;
         case eventsLookup['OFFENSIVE_FOUL']:
           addPlayerEvent(clone, action, {
@@ -110,6 +127,19 @@ function games(state = {}, action) {
             period: action.game.clock.period,
             teamId: action.team.id
           });
+          clone[action.game.info.id].temp.actionText = "Select Player for Charge Taken";
+          clone[action.game.info.id].temp.lastEventAction = eventsLookup['TAKEN_CHARGE'];
+          break;
+        case eventsLookup['TAKEN_CHARGE']:
+          addPlayerEvent(clone, action, {
+            playerId: action.player.id,
+            eventId: eventsLookup['TAKEN_CHARGE'],
+            time: action.game.clock.displayTime,
+            gameId: action.game.info.id,
+            period: action.game.clock.period,
+            teamId: action.team.id
+          });
+          clone[action.game.info.id].temp.actionText = "Select an Action";
           break;
         case eventsLookup['TECHNICAL_FOUL']:
           addPlayerEvent(clone, action, {
@@ -227,7 +257,7 @@ function games(state = {}, action) {
         case eventsLookup['PARTIAL_TIMEOUT']:
           addPlayerEvent(clone, action, {
             playerId: action.player.id,
-            eventId: eventsLookup['ASSIST'],
+            eventId: eventsLookup['PARTIAL_TIMEOUT'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
             period: action.game.clock.period,
@@ -238,7 +268,7 @@ function games(state = {}, action) {
         case eventsLookup['TIMEOUT']:
           addPlayerEvent(clone, action, {
             playerId: action.player.id,
-            eventId: eventsLookup['ASSIST'],
+            eventId: eventsLookup['TIMEOUT'],
             time: action.game.clock.displayTime,
             gameId: action.game.info.id,
             period: action.game.clock.period,
@@ -246,10 +276,22 @@ function games(state = {}, action) {
           });
           clone[action.game.info.id].temp.actionText = "Select an Action";
           break;
+        default:
+          throw new Error("Unexpected input when recieving a SELECT_PLAYER game event");
       }
-      console.log(JSON.stringify(clone[action.game.info.id].events));
+      // console.log(JSON.stringify(clone[action.game.info.id].events));
       return clone;
     case "REGISTER_GAME_EVENT":
+      switch (action.event) {
+        case eventsLookup['PARTIAL_TIMEOUT']:
+          clone[action.game.info.id].temp.actionText = "Select a Team or Player";
+          break;
+        case eventsLookup['TIMEOUT']:
+          clone[action.game.info.id].temp.actionText = "Select a Team or Player";
+          break;
+        // default:
+        //   throw new Error("Unexpected input when recieving a REGISTER_GAME_EVENT game event");
+      }
       clone[action.game.info.id].temp.lastEventAction = action.event;
       return clone;
     case "SUBSTITUTE_PLAYER_INTO_GAME":

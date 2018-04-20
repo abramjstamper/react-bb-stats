@@ -45,7 +45,7 @@ class BoxScore extends Component {
   }
 
   generateGameStatsForDataStructure = (tempState) => {
-    Object.values(this.props.game.events).map((event) => { this.evaluateEvent(event, tempState); });
+    Object.values(this.props.game.events).map((event) => { this.evaluateEvent(event, tempState); return 0; });
   }
 
   evaluateEvent = (event, state) => {
@@ -104,6 +104,13 @@ class BoxScore extends Component {
         case (eventsLookup["BLOCK"]):
           tempState[event.playerId].blocks += 1;
           break;
+        default:
+          try {
+            throw new Error("Unexpected ID when generating statistics for the box score");
+          } catch (err) {
+            console.log(event);
+            // console.log(err);
+          }
       }
       this.setState(tempState);
     }
