@@ -49,10 +49,12 @@ class EditGameForm extends Component {
               </Field>
             </div>
           </div>
+          <FieldWrapper fieldName="attendance" label="Attendance" />
+          <FieldWrapper fieldName="notes" label="Notes" />
         </div>
-        <div className="buttons">
-        <button className="button is-success" onClick={this.submit} type="submit">Save Changes</button>
-        <button className="button is-danger" onClick={this.cancel}>Cancel</button>
+        <div className="buttons is-right">
+          <button className="button is-success" onClick={this.submit} type="submit">Save Changes</button>
+          <button className="button is-danger" onClick={this.cancel}>Cancel</button>
         </div>
       </form>
     );
