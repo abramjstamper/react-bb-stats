@@ -33,6 +33,13 @@ export function createNewGame(game) {
   }
 }
 
+export function editGameInfo(game) {
+  return {
+    game: game,
+    type: "EDIT_GAME_INFO"
+  }
+}
+
 export function createNewPlayer(player, teamId) {
   return {
     player: player,

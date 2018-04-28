@@ -15,6 +15,11 @@ function games(state = {}, action) {
       const newKey = Object.keys(clone).length;
       clone[newKey] = { temp: {}, info: action.game, events: {}, clock: {} };
       return clone;
+    case "EDIT_GAME_INFO":
+      if (typeof action.game === 'undefined')
+        return clone;
+      clone[action.game.id] = {...clone, info: action.game}
+      return clone;
     case "UPDATE_CLOCK":
       clone[action.game.info.id].clock = action.clock;
       return clone;

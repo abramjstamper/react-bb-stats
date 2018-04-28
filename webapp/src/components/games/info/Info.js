@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import EditGameForm from '../EditGameForm';
 
 class Info extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Info</h1>
+      <div className="container">
+        <EditGameForm game={this.props.game} />
       </div>
     );
   }
