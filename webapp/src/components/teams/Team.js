@@ -14,11 +14,19 @@ class Team extends Component {
   }
 
   componentWillMount() {
-    this.team = this.props.teams[this.props.location.payload.id];
+    if("team" in this.props){
+      this.team = this.props.team;
+    } else {
+      this.team = this.props.teams[this.props.location.payload.id];
+    }
   }
 
   componentWillUpdate(){
-    this.team = this.props.teams[this.props.location.payload.id];
+    if("team" in this.props){
+      this.team = this.props.team;
+    } else {
+      this.team = this.props.teams[this.props.location.payload.id];
+    }
   }
 
   renderHomeAwayNumber(player) {

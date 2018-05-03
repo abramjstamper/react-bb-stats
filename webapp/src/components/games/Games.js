@@ -34,7 +34,7 @@ class Games extends Component {
       case this.state.tabs["EDIT"]:
         return (<Edit game={this.game} homeTeam={this.homeTeam} awayTeam={this.awayTeam} />);
       case this.state.tabs["TEAMS"]:
-        return (<Teams />);
+        return (<Teams homeTeam={this.homeTeam} awayTeam={this.awayTeam} />);
       case this.state.tabs["INFO"]:
         return (<Info game={this.game} homeTeam={this.homeTeam} awayTeam={this.awayTeam} />);
       case this.state.tabs["REPORTS"]:

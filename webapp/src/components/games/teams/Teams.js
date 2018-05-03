@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Team from '../../teams/Team';
 
 class Teams extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Teams</h1>
+      <div className="columns">
+        <div className="column">
+          <Team team={this.props.awayTeam} />
+        </div>
+        <div className="column">
+          <Team team={this.props.homeTeam} />
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => { return { games: state.games, teams: state.teams } };
-export default connect(mapStateToProps)(Teams);
+export default Teams;

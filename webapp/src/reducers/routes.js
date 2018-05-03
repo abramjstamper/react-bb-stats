@@ -7,7 +7,7 @@ import Dashboard from "../components/user/Dashboard";
 import Games_List from "../components/games/GamesList";
 import Games from "../components/games/Games";
 import Team_List from "../components/teams/TeamList";
-import Teams from "../components/teams/Teams";
+import Team from "../components/teams/Team";
 import Seasons_List from "../components/seasons/SeasonsList";
 
 // Action Types
@@ -16,7 +16,7 @@ export const DASHBOARD = 'COMPONENTS/DASHBOARD';
 export const GAMES_LIST = 'COMPONENTS/GAMES_LIST';
 export const GAMES = 'COMPONENTS/GAMES';
 export const TEAMS_LIST = 'COMPONENTS/TEAMS_LIST';
-export const TEAMS = 'COMPONENTS/TEAMS';
+export const TEAM = 'COMPONENTS/TEAM';
 export const SEASONS_LIST = 'COMPONENTS/SEASONS';
 
 const actionMap = {
@@ -25,7 +25,7 @@ const actionMap = {
   [GAMES_LIST]: {name: 'Games List', component: Games_List},
   [GAMES]: {name: 'Games', component: Games},
   [TEAMS_LIST]: {name: 'Teams List', component: Team_List},
-  [TEAMS]: {name: 'Teams', component: Teams},
+  [TEAM]: {name: 'Team', component: Team},
   [SEASONS_LIST]: {name: 'Seasons List', component: Seasons_List},
   [NOT_FOUND] : NOT_FOUND
 };
