@@ -6,12 +6,14 @@ class Teams extends Component {
 
   render() {
     return (
-      <div className="columns">
-        <div className="column">
-          <Team team={this.props.awayTeam} />
-        </div>
-        <div className="column">
-          <Team team={this.props.homeTeam} />
+      <div className="container">
+        <div className="columns is-centered">
+          <div className="column is-half">
+            <Team team={this.props.awayTeam} />
+          </div>
+          <div className="column is-half is-pulled-right">
+            <Team team={this.props.homeTeam} />
+          </div>
         </div>
       </div>
     );
