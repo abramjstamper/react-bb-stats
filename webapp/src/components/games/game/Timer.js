@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateClock } from '../../../actions/actionCreators';
-import ChevronUpIcon from 'mdi-react/ChevronUpIcon';
-import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
+import { ChevronUpIcon, ChevronDownIcon, AutorenewIcon } from 'mdi-react';
 
 //FIXME: Should come from the rule set
 const TIME_LEFT_IN_SECONDS = 30;
@@ -19,7 +18,7 @@ class Timer extends Component {
   }
 
   componentWillMount() {
-    if(Object.keys(this.props.game.clock).length === 0){
+    if (Object.keys(this.props.game.clock).length === 0) {
       this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, seconds: this.timer.seconds, period: this.period, runTimer: this.timer.runTimer });
     } else {
       this.createTimer(this.props.game.clock.seconds);
@@ -48,7 +47,7 @@ class Timer extends Component {
 
   pauseTimer = () => {
     this.timer.runTimer = false;
-    this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: false });   
+    this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: false });
   }
 
   timerTick = () => {
@@ -57,7 +56,7 @@ class Timer extends Component {
       this.timer.secondsRemaining--;
       this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
       this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: true });
-      
+
       if (this.timer.secondsRemaining > 0) {
         this.timerTick();
       }
@@ -78,7 +77,7 @@ class Timer extends Component {
   }
 
   newPeriod = () => {
-    if (this.period < MAX_PERIOD){
+    if (this.period < MAX_PERIOD) {
       this.period = this.period + 1;
       this.timer = this.createTimer(TIME_LEFT_IN_SECONDS);
       this.props.updateClock(this.props.game, { displayTime: this.timer.displayTime, period: this.period, runTimer: this.timer.runTimer });
@@ -105,16 +104,16 @@ class Timer extends Component {
   renderTimerSwitch = () => {
     if (this.timer.hasStarted) {
       if (this.timer.runTimer) {
-        return (<button className="button" onClick={() => this.pauseTimer()}>Stop Clock</button>);
+        return (<button className="button is-danger" onClick={() => this.pauseTimer()}>Stop Clock</button>);
       } else {
-        if(this.timer.hasFinished){
-          return (<button className="button" onClick={() => this.newPeriod()}>Start New Period</button>);
+        if (this.timer.hasFinished) {
+          return (<button className="button is-warning" onClick={() => this.newPeriod()}>Start New Period</button>);
         } else {
-          return (<button className="button" onClick={() => this.startTimer()}>Start Clock</button>);
+          return (<button className="button is-success" onClick={() => this.startTimer()}>Start Clock</button>);
         }
       }
     } else {
-      return (<button className="button" onClick={() => this.startTimer()}>Begin Period</button>);
+      return (<button className="button is-success" onClick={() => this.startTimer()}>Begin Period</button>);
     }
   }
 
@@ -146,6 +145,7 @@ class Timer extends Component {
             </div>
             <div className="column">
               {this.renderTimerSwitch()}
+              <button className="button" onClick={this.props.flipSideAction}><AutorenewIcon /></button>
             </div>
             <div className="column">
               {this.renderSecondsButtons()}

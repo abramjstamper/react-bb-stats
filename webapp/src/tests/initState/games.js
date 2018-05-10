@@ -7,7 +7,11 @@ const games = {
       awayTeam: 2,
       date: '03/03/13',
       time: '6:00 PM',
-      location: 'Memorial Gym'
+      location: 'Memorial Gym',
+      official1: "Tom Smith",
+      official2: "Lisa Smith",
+      official3: "Bryan Baller",
+      attendance: 5030
     },
     temp: {
       actionText: "Select Starters & Begin Clock to Start",

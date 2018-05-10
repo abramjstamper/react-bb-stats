@@ -11,27 +11,69 @@ import { selectPlayer } from '../../../actions/actionCreators';
 
 class Game extends Component {
 
+  constructor() {
+    super();
+
+    this.state = {
+      isHomeOnRightSide: true
+    }
+  }
+
+  flipSides = () => {
+    this.setState({ isHomeOnRightSide: !this.state.isHomeOnRightSide });
+  }
+
+  renderTopContent = () => {
+    if (this.state.isHomeOnRightSide) {
+      return (
+        <div>
+          <div className="columns">
+            <div className="column"><Score selectPlayer={this.props.selectPlayer} game={this.props.game} team={this.props.awayTeam} score={this.props.game.temp.awayScore} teamName={this.props.awayTeam.teamName} /></div>
+            <div className="column"><Timer flipSideAction={this.flipSides} game={this.props.game} gameId={this.props.game.id} /></div>
+            <div className="column"><Score selectPlayer={this.props.selectPlayer} game={this.props.game} team={this.props.homeTeam} score={this.props.game.temp.homeScore} teamName={this.props.homeTeam.teamName} /></div>
+          </div>
+
+          <div className="columns">
+            <div className="column"><Action actionText={this.props.game.temp.actionText} /></div>
+          </div>
+
+          <div className="columns">
+            <div className="column"><PlayerList game={this.props.game} team={this.props.awayTeam} /></div>
+            <div className="column"><Court game={this.props.game} gameId={this.props.game.id} /></div>
+            <div className="column"><PlayerList game={this.props.game} team={this.props.homeTeam} /></div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <div className="columns">
+            <div className="column"><Score selectPlayer={this.props.selectPlayer} game={this.props.game} team={this.props.homeTeam} score={this.props.game.temp.homeScore} teamName={this.props.homeTeam.teamName} /></div>
+            <div className="column"><Timer flipSideAction={this.flipSides} game={this.props.game} gameId={this.props.game.id} /></div>
+            <div className="column"><Score selectPlayer={this.props.selectPlayer} game={this.props.game} team={this.props.awayTeam} score={this.props.game.temp.awayScore} teamName={this.props.awayTeam.teamName} /></div>
+          </div>
+
+          <div className="columns">
+            <div className="column"><Action actionText={this.props.game.temp.actionText} /></div>
+          </div>
+
+          <div className="columns">
+            <div className="column"><PlayerList game={this.props.game} team={this.props.homeTeam} /></div>
+            <div className="column"><Court game={this.props.game} gameId={this.props.game.id} /></div>
+            <div className="column"><PlayerList game={this.props.game} team={this.props.awayTeam} /></div>
+          </div>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
+        {this.renderTopContent()}
         <div className="columns">
-          <div className="column"><Score selectPlayer={this.props.selectPlayer} game={this.props.game} team={this.props.awayTeam} score={this.props.game.temp.awayScore} teamName={this.props.awayTeam.teamName} /></div>
-          <div className="column"><Timer game={this.props.game} gameId={this.props.game.id} /></div>
-          <div className="column"><Score selectPlayer={this.props.selectPlayer} game={this.props.game} team={this.props.homeTeam} score={this.props.game.temp.homeScore} teamName={this.props.homeTeam.teamName} /></div>
-        </div>
-
-        <div className="columns">
-        <div className="column"><Action actionText={this.props.game.temp.actionText}/></div>
-        </div>
-
-        <div className="columns">
-          <div className="column"><PlayerList game={this.props.game} team={this.props.awayTeam} /></div>
-          <div className="column"><Court game={this.props.game} gameId={this.props.game.id} /></div>
-          <div className="column"><PlayerList game={this.props.game} team={this.props.homeTeam} /></div>
-        </div>
-        <div className="columns">
-          <div className="column"><LeftSideActionButtons game={this.props.game}/></div>
-          <div className="column"><RightSideActionButtons game={this.props.game}/></div>
+          <div className="column"><LeftSideActionButtons game={this.props.game} /></div>
+          <div className="column"><RightSideActionButtons game={this.props.game} /></div>
         </div>
       </div>
     );
@@ -39,4 +81,4 @@ class Game extends Component {
 }
 
 const mapStateToProps = state => { return { games: state.games, teams: state.teams, location: state.location } };
-export default connect(mapStateToProps, {selectPlayer})(Game);
+export default connect(mapStateToProps, { selectPlayer })(Game);

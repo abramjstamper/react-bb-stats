@@ -51,6 +51,9 @@ class EditGameForm extends Component {
           </div>
           <FieldWrapper fieldName="attendance" label="Attendance" />
           <FieldWrapper fieldName="notes" label="Notes" />
+          <FieldWrapper fieldName="official1" label="Official 1" />
+          <FieldWrapper fieldName="official2" label="Official 2" />
+          <FieldWrapper fieldName="official3" label="Official 3" />
         </div>
         <div className="buttons is-right">
           <button className="button is-success" onClick={this.submit} type="submit">Save Changes</button>
