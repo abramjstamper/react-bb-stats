@@ -51,7 +51,7 @@ class Team extends Component {
         </h2>
         <p>Head Coach: {this.team.headCoach}</p>
         <p>Assistant Coach: {this.team.assistiantCoach}</p>
-        <EditTeamForm/>
+        <EditTeamForm team={this.props.team}/>
       </div >
     )
   }

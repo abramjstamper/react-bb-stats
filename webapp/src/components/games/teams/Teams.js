@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Team from '../../teams/Team';
 
 class Teams extends Component {

@@ -7,22 +7,27 @@ import { editTeam } from '../../actions/actionCreators';
 
 class EditTeamForm extends Component {
 
-  submit = (e) => {  
+  submit = (e) => {
     e.preventDefault();
     this.props.editTeam(this.props.form.editTeamForm.values);
-    // this.props.reset("editTeamForm");
-    // this.forceUpdate();
   }
 
-  componentWillMount () {
-    this.props.initialize(this.props.teams[this.props.location.payload.id]);
+  componentWillMount() {
+    if (typeof this.props.team === undefined) {
+      this.props.initialize(this.props.team);
+      this.team = this.props.team;
+    } else {
+      this.props.initialize(this.props.teams[this.props.location.payload.id]);
+      this.team = this.props.teams[this.props.location.payload.id];
+      console.log(this.team);
+    }
   }
 
   render() {
     return (
       <form onSubmit={this.submit}>
         <Modal
-          title={this.props.teams[this.props.location.payload.id].teamName}
+          title={this.team.teamName}
           body={
             <div>
               <FieldWrapper fieldName="teamName" label="Team Name" />
@@ -46,8 +51,8 @@ EditTeamForm = connect(
   mapStateToProps,
   {
     editTeam,
-    reset 
+    reset
   }
 )(EditTeamForm);
 
-export default reduxForm({ form: 'editTeamForm'})(EditTeamForm); 
+export default reduxForm({ form: 'editTeamForm' })(EditTeamForm); 
